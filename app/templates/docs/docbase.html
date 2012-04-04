@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ doc_title }} - {% trans %}Documentation{% endtrans %}{% endblock %}
+
+{% block extra_head %}
+{{ css_package('docs') }}
+{% endblock %}
+
+{% block extra_headjs %}
+    {{ js_package('docs', True) }},
+{% endblock %}
+
+{% block extra_script %}
+    head(function() {
+        prettyPrint();
+    });
+{% endblock %}
+
+{% block content_class %}docs{% endblock %}
+
+{% block extra_left_nav %}
+<li class="chevron">&raquo;</li>
+<li>{{ doc_link() }}</li>
+<li class="chevron">&raquo;</li>
+<li>{{ doc_title }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="dlg-page chameleon-bg">
+    {% if self.doc_header() %}
+        {% block doc_header %}{% endblock %}
+    {% else %}
+    <h1>{{ doc_title }}</h1>
+    {% endif %}
+    {% block doc_content %}
+    {% endblock %}
+</div>
+{% endblock %}

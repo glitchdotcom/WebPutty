@@ -1,0 +1,14 @@
+<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+{% if site %}
+<p>
+    {% trans site_name=site.name %}Site: {{ site_name }}{% endtrans %}
+</p>
+{% endif %}
+<p>
+    {{ form.name.label }}
+    {{ form.name }}
+</p>
+<p>
+    {{ form.url.label }}
+    <input type="text" value="{% if form.url.data %}{{ form.url.data }}{% else %}http://{% endif %}" class="input_full" name="url" id="url" />
+</p>

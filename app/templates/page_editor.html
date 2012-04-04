@@ -1,0 +1,10 @@
+<h1>{% trans %}Edit Stylesheet{% endtrans %}</h1>
+<form method="POST" action="{{ url_for('edit_page', page_id=page.key().id()) }}">
+    {% include "page_form.html" %}
+    {% include "page_form_edit.html" %}
+    <p>
+        <input type="submit" value="{% trans %}Update!{% endtrans %}" />
+        <img class="throbber" src="/static/img/throbber.gif" width="16" height="16" />
+    </p>
+    {% include "form_errors.html" %}
+</form>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}{% trans %}Your Sites &amp; Styles{% endtrans %}{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block extra_script %}
+    Urls['index'] = '{{ url_for('index') }}';
+    Urls['site'] = '{{ url_for('site', site_id=0) }}';
+    Urls['leave_site'] = '{{ url_for('leave_site') }}';
+    Urls['delete_page'] = '{{ url_for('delete_page') }}';
+    Urls['delete_site'] = '{{ url_for('delete_site') }}';
+    {{ js_package('index') }}
+    {{ guider('index_intro') }}
+{% endblock %}
+
+{% block extra_right_nav %}
+<li>{{ guider_link('index_intro', _('Help'), _('Take the 10&cent; tour')) }}</li>
+{% endblock %}
+
+{% block content_class %}sites{% endblock %}
+
+{% block content %}
+    <div id="site-bg"></div>
+    {% for site in sites %}
+    <div id="site-{{ site.key().id() }}" class="site compacted" data-id="{{ site.key().id() }}">
+        <div class="site-info">
+            <h3>
+                <nobr>
+                    <span class="site-name">{{ site.name }}</span>
+                    {% if user in site.admins %}
+                    <a class="configure-site" href="{{ url_for('edit_site', site_id=site.key().id()) }}" title="{% trans %}Edit this site's name{% endtrans %}"><img src="/static/img/gear.png" alt="{% trans %}Edit site settings{% endtrans %}" width="16" height="16" /></a>
+                    <a href="{{ url_for('edit_siteusers', site_id=site.key().id()) }}" class="site-setting-control users" title="{% trans %}Manage Users{% endtrans %}"><img src="/static/img/users.png" alt="{% trans %}Some shall pass!{% endtrans %}" width="16" height="16" /></a>
+                    {% endif %}
+                    {% if user not in site.admins or site.admins.__len__() > 1 %}
+                    <a href="#" class="site-setting-control leave" title="{% trans %}Remove yourself from this site{% endtrans %}"><img src="/static/img/door-open-out.png" width="16" height="16" /></a>
+                    {% endif %}
+                    {% if user in site.admins %}
+                    <a href="#" class="site-setting-control delete" title="{% trans %}Delete Site{% endtrans %}"><img src="/static/img/bin.png" width="16" height="16" /></a>
+                    {% endif %}
+                </nobr>
+            </h3>
+        </div>
+        <div class="pages">
+            {% for page in site.page_set.order('name') %}
+            <div id="page-{{ page.key().id() }}" class="page">
+                <a href="{{ url_for('editor', page_id=page.key().id()) }}" title="{% trans %}Click to edit this stylesheet (i.e., go to where the magic happens){% endtrans %}">
+                    <span class="img-wrap">
+                        <img src="/static/img/loading-preview.png" {% if page.preview_img %}data-lazyload="{{ url_for('page_preview', page_id=page.key().id()) }}"{% endif %} alt="{{ page.name }}">
+                    </span>
+                    <span class="page-name">{{ page.name }}</span>
+                </a>
+                {% if user in site.admins %}
+                <a href="#" class="delete" title="{% trans %}Click to delete this style{% endtrans %}"><img src="/static/img/x.png" width="25" height="29" alt="X" /></a>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% if user in site.admins %}
+            <div class="page new">
+                <a href="{{ url_for('new_page', site_id=site.key().id()) }}" class="new-page" title="{% trans %}Click to start mixin' some new stylez{% endtrans %}">
+                    <span class="img-wrap"><span>{% trans %}New<br />Style{% endtrans %}</span></span>
+                    <span class="page-name"></span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <div id="new-site" class="site compacted">
+        <div class="pages">
+            {% for i in range(3, 0, -1) %}
+            <div class="page new">
+                <a href="{{ url_for('new_site') }}" class="new-site" title="{% trans %}Click to get crackin' on something new{% endtrans %}">
+                    <span class="img-wrap">{% if i == 1 %}<span>{% trans %}New<br />Site{% endtrans %}</span>{% endif %}</span>
+                    <span class="page-name"></span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

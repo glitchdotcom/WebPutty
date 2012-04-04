@@ -1,0 +1,152 @@
+/*
+ * This is an SCSS example. Notice the nesting of rules, variables, functions,
+ * and mixins. Docs for SCSS can be found at http://sass-lang.com and 
+ * docs for the included mixins can be found at http://compass-style.org.
+ */
+
+$link-color: #1b67c9;
+
+/* Defines things like border-radius, box-shadow, etc. 
+ * See http://compass-style.org/reference/compass/css3/ for more info. */
+@import "compass/css3"; 
+
+/* HTML5-specific CSS setup */
+article, aside, figure, footer, header, hgroup, nav, section {
+  display: block;
+}
+
+html {
+  background: white;
+  color: black;
+}
+
+body {
+  font: normal medium 'Gill Sans', 'Gill Sans MT', 'Goudy Bookletter 1911', 'Linux Libertine O', 'Liberation Serif', Candara, serif;
+  padding: 0;
+  margin: 0 auto;
+  width: 35em;
+  line-height: 1.75;
+  word-spacing: 0.1em;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  border-bottom: 1px dotted;
+ 
+  &:link {
+    color: $link-color;
+  }
+     
+  &:hover {
+    border-bottom: 1px solid;
+    color: lighten($link-color, 15%);
+  }
+  
+  &:visited {
+    color: darken($link-color, 15%);
+  }
+}
+
+h1 {
+  letter-spacing: 1em;
+  text-align: center;
+  margin: 0;
+  
+  a {
+    color: inherit !important;
+  }
+}
+
+h2 {
+  text-align: center;
+  font-size: medium;
+  line-height: 2.154;
+}
+
+h2, p {
+  margin: 1.75em 0;
+  font-weight: normal;
+}
+
+h1, h2 {
+  font-size: medium;
+}
+
+body > header {
+  background: black;
+  @include border-radius(10px);
+  @include box-shadow(0 5px 10px rgba(0,0,0,0.5));
+  @include background-image(linear-gradient(darken($link-color, 15%), darken($link-color, 30%)));
+  color: white;
+  margin: 0;
+  padding: 1.75em 0;
+}
+
+nav {
+  a {
+    &:link {
+      color: white;
+    }
+    
+    &:visited {
+      color: white;
+    }
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0 1em 0 0;
+    text-align: center;
+    
+    li {
+      display: inline;
+      padding-left: 1em;
+    }
+  }
+}
+
+article, section {
+  header {
+    background: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    letter-spacing: 0;
+    text-align: left;
+    margin: 1.75em 0;
+  }
+}
+
+#arc {
+  border-collapse: collapse;
+  
+  th, td {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  th, .r {
+    text-align: right;
+  }
+  
+  th {
+    padding: 0 1.75em 0 0;
+    vertical-align: baseline;
+  }
+}
+
+footer, .c {
+  text-align: center;
+  clear: both;
+}
+
+time {
+  float: right;
+  font-size: small;
+  margin: 2px 0 0 0;
+}

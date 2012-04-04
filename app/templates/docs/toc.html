@@ -1,0 +1,38 @@
+{% extends "docs/docbase.html" %}
+
+{% block doc_header %}
+<h1>Welcome to <span title="Say *that* 10 times fast!">the Wonderful World of {{ appname }}&trade;!</span></h1>
+{% endblock %}
+
+{% block doc_content %}
+    <p>
+        Here you'll be able to start your vision quest toward using
+        {{ appname }} to make your websites' CSS
+        <span title="...you know, as much as blobs of compressed, minified CSS flying across the intertubes can sing, that is">sing</span>!
+        We'll cover {{ doc_link('getting-started', link_text='the basics') }},
+        {{ doc_link('development-environments', link_text='the not-so-basics') }},
+        and even the mystical world of {{ doc_link('respond-js', link_text='Media Queries') }}
+        in the dark, damp, and
+        <span title="&lt;ghoulish-voice&gt; ooooOOOOOooooohhhh! &lt;/ghoulish-voice&gt;">spooky realm of pre-IE9 Internet Explorer!</span>
+    </p>
+    <p>
+        We're taking the approach of writing this documentation as our
+        customers (<span title="And we totally less-than-3 you guys &amp; gals! colon-right-paren">that's you!</span>)
+        ask us questions. Turns out we're programmers, so rather than answering
+        the same question 17 times via email, we'd rather just write it up
+        once, drop-kick it out to the interwebs, and let Google/Bing/Altavista
+        point people to the answers. Or, at the very least, make our email
+        responses shorter (&quot;Hey! Good question! Go check out...&quot;).
+    </p>
+    <p class="signature">
+        Stylisticly yours,
+        <img src="/static/img/chameleon-200.png" alt="Super-cute {{ appname }} Chameleon" width="90" height="83" />
+        The {{ appname }} Peeps
+    </p>
+    <h2>{{ doc_title }}</h2>
+    <ul>
+        {% for doc in doc_list if doc[0] != 'toc' %}
+        <li>{{ doc_link(doc[0]) }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

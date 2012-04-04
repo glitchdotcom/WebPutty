@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{% trans %}Welcome to {{ appname }}!{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    <h2>{% trans %}Congratulations!{% endtrans %}</h2>
+    <p>
+        {% if user in site.admins %}
+        {% trans site_name=site.name %}
+        You've been successfully added
+        <b>as an administrator</b> (how impressive)
+        to the site "{{ site_name }}"!
+        {% endtrans %}
+        {% else %}
+        {% trans site_name=site.name %}
+        You've been successfully added
+        to the site "{{ site_name }}"!
+        {% endtrans %}
+        {% endif %}
+    </p>
+    <p>
+        {% trans index_url=url_for('index') %}To get started with {{ appname }}, just head over to the <a href="{{ index_url }}" title="Your Sites &amp; Styles">home page</a> and start clicking around.{% endtrans %}
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+<link rel="stylesheet" type="text/css" href="{{ css_path|escape }}" />
+<script type="text/javascript">
+    head.js('{{ js_path|escape }}', function() {
+        GaeMiniProfiler.init({{ request_id_js }}, {{ show_immediately_js }});
+    });
+</script>

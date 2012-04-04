@@ -1,0 +1,11 @@
+{% trans inviter_email=invite.inviter.email() %}{{ inviter_email }} has invited you to work on a website with them in {{ appname }}.{% endtrans %}
+
+{% trans site_name=invite.site.name %}To accept this invitation and start molding the styles in "{{ site_name }}", just visit the following URL:{% endtrans %}
+
+{{ url_for('invitation', hash=invite.hash, _external=True) }}
+
+{% trans %}What's {{ appname }}?{% endtrans %}
+{% trans %}{{ appname }} is like a transmogrifier for your website. It lets you edit your website's CSS in one pane and see a live preview of how those changes will look in another, all without inflicting any half-baked designs on your website's visitors. Once you're happy with your new design though, you're only a button click away from publishing those styles and making them live on your website. You can find out more here: http://blog.fogcreek.com/webputty-css-editing-goes-boink/{% endtrans %}
+
+{% trans %}Enjoy!{% endtrans %}
+{% trans %}--The {{ appname }} People{% endtrans %}

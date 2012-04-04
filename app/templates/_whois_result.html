@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}WHOIS/Reverse Lookup Results{% endblock %}
+
+{% block content_class %}whois{% endblock %}
+
+{% macro datastore_url(key, text) -%}
+    <a href="{% if debug %}/_ah/admin{% else %}https://appengine.google.com{% endif %}/datastore/edit?app_id=s~cssfiddle&key={{ key }}" target="_blank" title="View entity in datastore viewer">{{ text }}</a> ({{ key }})
+{%- endmacro %}
+
+{% macro blank_row() -%}
+    <tr><td colspan="2">&nbsp;</td></tr>
+{%- endmacro %}
+
+{% block content %}
+<div class="dlg-page">
+    <h1>WHOIS/Reverse Lookup Results</h1>
+    <table>
+        {% if page %}
+        <tr>
+            <th colspan="2">Page &amp; parent site for key {{ key }}:</th>
+        </tr>
+        <tr>
+            <td>Page name</td>
+            <td>{{ datastore_url(page.key(), page.name) }}</td>
+        </tr>
+        <tr>
+            <td>Preview url</td>
+            <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
+        </tr>
+        {% if page.preview_img %}
+        <tr>
+            <td>Preview</td>
+            <td><img src="{{ url_for('page_preview', page_id=page.key().id()) }}" style="vertical-align: middle; border: 1px solid #999;" /></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td>Preview</td>
+            <td>[No preview available]</td>
+        </tr>
+        {% endif %}
+        {% with site = page.site %}
+            {% include "_whois_site.html" %}
+        {% endwith %}
+        {% endif %}
+        {% if user_sites %}
+        <tr>
+            <th colspan="2">Sites editable by {{ email }}:</th>
+        </tr>
+            {% for site in user_sites %}
+                {% if not loop.first %}{{ blank_row() }}{% endif %}
+                {% include "_whois_site.html" %}
+            {% endfor %}
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}Credits{% endtrans %}{% endblock %}
+
+{% block content_class %}credits{% endblock %}
+
+{% block extra_left_nav %}
+<li class="chevron">&raquo;</li>
+<li>{% trans %}Credits{% endtrans %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="dlg-page chameleon-bg">
+    <h3>{% trans %}Some of the icons, images, and sample HTML &amp; CSS used by {{ appname }} are licensed under the following terms:{% endtrans %}</h3>
+    <table>
+        <tr>
+            <th colspan="2"><a rel="nofollow external" target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>:</th>
+        </tr>
+        <tr>
+            <td width="150">
+                <img src="/static/img/vertical-panes.png" title="application_tile_horizontal" />
+                <img src="/static/img/horizontal-panes.png" title="application_tile_vertical" />
+            </td>
+            <td>FatCow Web Hosting, <a rel="nofollow external" target="_blank" href="http://www.fatcow.com/free-icons">Farm-Fresh Web Icon Pack</a></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="/static/img/locked.png" title="lock" />
+                <img src="/static/img/unlocked.png" />
+            </td>
+            <td>design deck, <a rel="nofollow external" target="_blank" href="http://www.designdeck.co.uk/article_details.php?id=246">IC Minimal Icon Set</a></td>
+        </tr>
+        <tr>
+            <td>
+                <nobr>
+                    <img src="/static/img/refresh.png" title="arrow_circle" />
+                    <img src="/static/img/external.png" title="external" />
+                    <img src="/static/img/exclamation.png" title="exclamation" />
+                </nobr>
+            </td>
+            <td>Yusuke Kamiyamane, <a rel="nofollow external" target="_blank" href="http://p.yusukekamiyamane.com/">Fugue Icon Pack</a></td>
+        </tr>
+        <tr>
+            <td class="text">
+                <p>{% trans %}Adapted HTML4 &amp; HTML5 blog examples{% endtrans %}</p>
+            </td>
+            <td>Mark Pilgrim, <a rel="nofollow external" target="_blank" href="http://diveintohtml5.org">Dive into HTML5</a></td>
+        </tr>
+        <tr>
+            <th colspan="2"><a rel="nofollow external" target="_blank" href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-NoDerivs License</a>:</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="/static/img/big-lock.png" title="lock" />
+            </td>
+            <td>Double-J Design, <a rel="nofollow external" target="_blank" href="http://www.doublejdesign.co.uk/products-page/icons/siena/">Siena Icon Pack</a></td>
+        </tr>
+        <tr>
+            <th colspan="2"><a rel="nofollow external" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike License</a>: {% trans %}(with explicit permission for use in {{ appname }}){% endtrans %}</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="/favicon.ico" title="a chameleon" />
+                <img src="/static/img/dead-chameleon.png" title="a chameleon" />
+            </td>
+            <td>Hayes Roberts, <a rel="nofollow external" target="_blank" href="http://www.bluebison.net/content/?p=786">www.bluebison.net</a></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<p>
+    <h2>{% trans %}Additional preview URLs:{% endtrans %}</h2>
+    <table>
+        {% for url in form.preview_urls %}
+        <tr>
+            <td>
+                <a href="#" id="text_{{ url.id }}" class="click-to-edit-text" title="{% trans %}Click to edit{% endtrans %}">{{ url.data }}</a>
+                <input type="hidden" id="{{ url.id }}" name="{{ url.id }}" value="{{ url.data }}" />
+            </td>
+            <td><button class="removeUrl">{% trans %}Remove URL{% endtrans %}</button></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><input type="text" id="newPreviewUrl" class="input_full" value="http://" /></td>
+            <td><input type="button" class="addUrl" value="{% trans %}Add new URL{% endtrans %}" /></td>
+        </tr>
+    </table>
+</p>

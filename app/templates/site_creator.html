@@ -1,0 +1,9 @@
+<h1>{% trans %}Add a New Site{% endtrans %}</h1>
+<form method="POST" action="{{ url_for('new_site') }}">
+    {% include "page_form.html" %}
+    <p>
+        <input type="submit" value="{% trans %}Create!{% endtrans %}" />
+        <img class="throbber" src="/static/img/throbber.gif" width="16" height="16" />
+    </p>
+    {% include "form_errors.html" %}
+</form>

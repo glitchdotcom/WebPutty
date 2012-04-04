@@ -1,0 +1,213 @@
+{% extends "docs/docbase.html" %}
+
+{% block doc_content %}
+    <p>
+        This article is all about using {{ appname }} in both your development
+        environment (including your local machine) as well as in your
+        production environment, but also covers some more general tips and
+        tricks for working with {{ appname }}.
+    </p>
+    <p>
+        If you're new to {{ appname }} and haven't already set up your site to
+        use it, you might want to check out our
+        {{ doc_link('getting-started', link_text='getting started guide') }}
+        first.
+    </p>
+    <h2><a name="versioning">How {{ appname }} versions your styles:</a></h2>
+    <p>
+        Currently, {{ appname }} provides you with two versions for each
+        stylesheet you set up:
+    </p>
+    <ol>
+        <li>the <strong>published</strong> version
+            <ul>
+                <li>
+                    this is the &quot;live&quot; copy of your styles that is
+                    served to people visiting your website
+                </li>
+                <li>
+                    this copy is minified and gzipped so that it can be served
+                    as quickly as possible
+                </li>
+            </ul>
+        </li>
+        <li>the <strong>preview</strong> version
+            <ul>
+                <li>
+                    this is the copy of your styles that you can modify in the
+                    editor
+                </li>
+                <li>
+                    this copy is what's used by default in the live preview
+                    pane of the editor
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <p>
+        By having two copies of each of your styles, you can work on new ideas
+        using the live preview pane and the rest of {{ appname }}'s features
+        without unleashing any half-baked designs on your website's visitors.
+        Once you're happy with a new design, you just need to click
+        &quot;Publish,&quot; and then the preview copy becomes the published
+        copy instantly. As soon as you've clicked that button, new visitors to
+        your website will see the updated styles.
+    </p>
+    <p>
+        As a side note, <strong>every single published revision of your styles
+        is stored by {{ appname }} in its database</strong>; however, currently
+        only the most recent published version and your maliable preview copy
+        are exposed through {{ appname }}'s UI.
+    </p>
+    <h2><a name="local-dev">Using {{ appname }} in development as well as production:</a></h2>
+    <p>
+        Can I use {{ appname }} with a site that's only hosted on my local
+        machine? Sure! <strong>The preview pane in {{ appname }}'s editor is just an
+        iframe, so it can load any website you can load from your computer.</strong>
+        This means that you can point {{ appname }} at your local development
+        machine regardless of whether or not it's behind a firewall or only
+        hosted on your personal computer. If you can navigate to it with your
+        browser, you should be able to use it with {{ appname }}'s preview
+        pane.
+    </p>
+    <p>
+        All that matters once you've added {{ appname }}'s
+        <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags to your
+        website is that the page you're trying to use with {{ appname }}'s
+        preview pane can make outbound requests to http://www.webputty.net/ so
+        that it can load the JavaScript required to operate the live preview
+        pane.
+    </p>
+    <p>
+        Once you've gotten {{ appname }}'s editor working with your development
+        environment, there are a number of ways you can leverage {{ appname }}
+        in both your development environment as well as in production...at the
+        same time! The way we do this with {{ appname }} itself, is by <strong>
+        using the published styles in production, and the preview styles in our
+        development environment</strong>.
+    </p>
+    <p>
+        So, how do <em>we</em> accomplish that? It's actually pretty simple. In
+        development, we load the CSS from {{ appname }} directly (not from
+        Google Cloud Storage) and append &quot;?preview=1&quot; (without the
+        quotes) to the end of our {{ appname }} stylehseet's <code>href</code>
+        attribute. This causes {{ appname }} to serve up the
+        <strong>preview</strong> version of our styles instead of the
+        <strong>published</strong> version. In production, we use the Google
+        Cloud Storage URL (this is the one {{ appname }} uses in the
+        &quot;Embed&quot; dialog) so that we get the published version, and also
+        get better performance (Cloud Storage is faster than App Engine at
+        serving your {{ appname }} stylesheets).
+    </p>
+    <p>
+        {{ appname }} is currently running on
+        <a href="http://code.google.com/appengine/" target="_blank">Google App Engine</a>
+        using <a href="http://flask.pocoo.org/" target="_blank">Flask</a>
+        (which uses <a href="http://jinja.pocoo.org/docs/" target="_blank">Jinja2 templates</a>),
+        so our code looks like this:
+    </p>
+<pre class="prettyprint" rel="HTML">
+{% raw %}{% if debug %}{% endraw %}
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
+href=&quot;{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}<strong>?preview=1</strong>&quot; /&gt;
+{% raw %}{% else %}{% endraw %}
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
+href=&quot;{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M.css{% else %}{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}{% endif %}&quot; /&gt;
+{% raw %}{% endif %}{% endraw %}
+</pre>
+    <p>
+        Once we've got our code set up to pull in preview styles in our
+        development environment, it's just a matter of adding an additional
+        preview URL to our stylesheet's configuration in the editor. To do
+        this, open the editor for one of your styles, click on the
+        &quot;Configure&quot; button above the preview pane, and add as many
+        additional preview URLs as you like:
+    </p>
+    <img class="screenshot" src="/static/img/docs/additional-preview-url.png" alt="Adding additional preview URLs" />
+    <p>
+        Once you've added your additional preview URLs, they will all show up
+        in the dropdown above the preview pane. This way you can use the live
+        preview pane with your production website ("http://www.example.com" in
+        the example above) as well as your development machine
+        ("http://localhost:8080" above)...or Rachel's development machine, or
+        Bob's staging machine, etc.
+    </p>
+    <p>
+        Using the un-published version of your styles in development, and the
+        published styles in production isn't anything fancy, but it
+        gets the job done for us. Of course, we also realize that a lot of
+        folks need more version control than just published vs. preview. And
+        trust us, we've got plans to add more powerful versioning on the
+        horizon...it's just not quite ready to announce yet. ;)
+    </p>
+    <h2><a name="query-string-params">Nifty things you can do with query string parameters:</a></h2>
+    <ul>
+        <li>
+            Use <strong><code>?preview=1</code></strong> at the end of
+            the <code>href</code> attribute on {{ appname }}'s
+            <code>&lt;link&gt;</code> tag
+            <ul>
+                <li>
+                    This will cause {{ appname }} to serve up the
+                    <strong>preview</strong> version of your stylesheet instead
+                    of the <strong>published</strong> version.
+                </li>
+                <li>
+                    This is useful when using {{ appname }} in a development
+                    environment (see above).
+                </li>
+            </ul>
+        </li>
+        <li>
+            Use <strong><code>?pretty=1</code></strong> at the end of
+            the <code>href</code> attribute on {{ appname }}'s
+            <code>&lt;link&gt;</code> tag
+            <ul>
+                <li>
+                    This will cause {{ appname }} to pretty print (i.e.,
+                    indent and space out) your stylesheet's CSS rather than
+                    minifying it.
+                </li>
+                <li>
+                    This is useful when using {{ appname }} in a development
+                    environment as it makes line numbers in tools like Firebug
+                    or the Chrome Developer Tools more useful.
+                </li>
+                <li>
+                    This can be used in combination with
+                    <code>?preview=1</code> as well (i.e.,
+                    <code>?preview=1&pretty=1</code>).
+                </li>
+            </ul>
+        </li>
+        <li>
+            Use <strong><code title="underscore, underscore, 'preview', underscore, 'css', underscore, underscore">?__preview_css__=1</code></strong>
+            with the URL of your website that's using {{ appname }}
+            <ul>
+                <li>
+                    This will cause {{ appname }}'s JavaScript tag to load the
+                    <strong>preview</strong> version of any {{ appname }}
+                    stylesheets on the page instead of their
+                    <strong>published</strong> versions.
+                </li>
+                <li>
+                    This is useful for sharing a design with select people
+                    without having to publish those changes, as well as for
+                    testing in browsers that aren't supported by
+                    {{ appname }}'s editor (e.g., older versions of IE).
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        So that's most of {{ appname }}'s developer-centric doodads that aren't
+        covered in the
+        <a href="{{ url_for('views.home') }}">overview video on our homepage</a>
+        about {{ appname }}'s transmogrifier. Have you heard about Media
+        Queries? You have? Cool!
+        {{ doc_link('respond-js', link_text='%s supports those too' % appname) }}!
+    </p>
+    <p>
+        Return to the {{ doc_link('toc') }}.
+    </p>
+{% endblock %}

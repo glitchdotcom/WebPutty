@@ -1,0 +1,13 @@
+{% if form.errors %}
+<ul class="errors">
+    {% for field_name, field_errors in form.errors.items() if field_errors %}
+    <li>{{ form[field_name].label }}
+        <ul>
+        {% for error in field_errors %}
+        <li>{% if error is string %}{{ error }}{% else %}{{ error[0] }}{% endif %}</li>
+        {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}

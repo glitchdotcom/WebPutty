@@ -1,0 +1,241 @@
+{% extends "docs/docbase.html" %}
+
+{% block doc_content %}
+    <p>
+        So you've decided to give {{ appname }} a try, huh? That's GREAT! Let's
+        get down to business. If you've gotten here, but still aren't sure what
+        {{ appname }} actually does, you can check out
+        <a href="{{ url_for('views.home') }}">our landing page</a> which gives
+        a good summary of what {{ appname }} sets out to do.
+    </p>
+    <h2>Overview:</h2>
+    <p>
+        First, you'll need to log in to {{ appname }} if you haven't already
+        done that (just click &quot;Login&quot; in the top-right corner).
+        You'll need a free Google Account, such as a Gmail account, in order to
+        log in. But don't worry! We only get access to your email address (not
+        your name, or the birth certificate of your first-born child, or
+        anything else for that matter), and we promise not to use it for
+        anything evil. Seriously. In fact, currently we don't use your email
+        address for anything other than telling that you're you.
+    </p>
+    <p>
+        Once you've logged in, you'll see a list of all the websites you've
+        configured to use with {{ appname }}:
+    </p>
+    <img class="screenshot" src="/static/img/docs/dashboard.png" alt="{{ appname }} dashboard" />
+    <p>
+        To help you get a feel for how things work, we automatically create
+        a sample website for you to play around with. If you click on the
+        stack of pages under &quot;Example Site&quot; it will expand to show
+        you all the pages contained within that website:
+    </p>
+    <img class="screenshot" src="/static/img/docs/dashboard-site-expanded.png" alt="{{ appname }} dashbaord with an expanded site" />
+    <p>
+        From here, if you click on one of these pages, you'll be taken to the
+        transmogrifier ({{ appname }}'s editor interface) which is what
+        actually lets you modify your pages' styles.
+    </p>
+    <p>
+        If you'd like to learn more about using {{ appname }}'s transmogrifier,
+        you can watch the
+        <a href="{{ url_for('views.home') }}">overview video on our homepage</a>.
+    </p>
+    <h2>Setting up your first website:</h2>
+    <p>
+        Ok, we want to use {{ appname }} with one of your existing websites, so
+        let's return to the main dashboard (a quick way to get there is by
+        clicking on &quot;{{ appname }}&quot; in the upper-left corner).
+    </p>
+    <p>
+        Once there, just click on &quot;New Site&quot; and fill in the details
+        for the site you'd like to start using {{ appname }} with:
+    </p>
+    <img class="screenshot" src="/static/img/docs/new-site-dialog.png" alt="{{ appname }}'s New Site dialog" />
+    <p>
+        After you've clicked &quot;Create,&quot; you'll be whisked away to the
+        transmogrifier...
+    </p>
+    <img class="screenshot" src="/static/img/docs/busted-transmogrifier.png" alt="{{ appname }} transmogrifier that hasn't been wired up yet" />
+    <p>
+        ...only, when you get there, it will look like things are broken.
+        That's because things <em>will</em> be broken...at least for now
+        (thus the dead chameleon).
+    </p>
+    <p>
+        Ok, so how do we go about bringing the cute lil' guy back to life?
+    </p>
+    <h2><a name="wiring-things-up">Wiring up your website to use {{ appname }}:</a></h2>
+    <p>
+        {{ appname }} needs to add a <code>&lt;link&gt;</code> tag and a
+        <code>&lt;script&gt;</code> tag to your website in order to get things
+        working. The <code>&lt;link&gt;</code> tag is what will pull in your
+        stylesheet from {{ appname }}, and the <code>&lt;script&gt;</code> tag
+        is what makes the live preview pane work in the transmogrifier.
+    </p>
+    <p>
+        To get the tags you'll need to add to your website, just click on the
+        &quot;Embed&quot; link above the preview pane. Once that dialog opens,
+        copy and paste the tags shown there and add them to your website's
+        HTML.
+    </p>
+    <img class="screenshot" src="/static/img/docs/embed-tags-dialog.png" alt="The Embed Tags dialog" />
+    <p>
+        So, for example, if your website's source used to look like this:
+    </p>
+<pre class="prettyprint" rel="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;link rel="stylesheet" type="text/css" href="mystylez.css" /&gt;
+  &lt;title&gt;My Splendiferous Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;My Splendiferous Website!&lt;/h2&gt;
+    ...
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        You'll need to add {{ appname }}'s tags right before the
+        <code>&lt;/head&gt;</code> tag, like this:
+    </p>
+<pre class="prettyprint" rel="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;My Splendiferous Website&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="mystylez.css" /&gt;
+
+  &lt;!-- magical {{ appname }} tags --&gt;
+  &lt;link rel="stylesheet" type="text/css" href="{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M.css{% else %}{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}{% endif %}" /&gt;
+  &lt;script type="text/javascript"&gt;(function(w,d){if(w.location!=w.parent.location||w.location.search.indexOf('__preview_css__')>-1){var t=d.createElement('script');t.type='text/javascript';t.async=true;t.src='{{ url_for('js', page_key='agtzfmNzc2ZpZGRsZXIMCxIASDFnZRjwvx8M', _external=True) }}';(d.body||d.documentElement).appendChild(t);}})(window,document);&lt;/script&gt;
+  &lt;!-- magical {{ appname }} tags --&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;My Splendiferous Website!&lt;/h2&gt;
+    ...
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        Once you've done that, head back to {{ appname }}'s editor, close the
+        embed dialog, and click on the refresh icon next to the preview pane's
+        URL dropdown: <img class="top-align" src="/static/img/refresh.png" alt="Refresh icon" width="16" height="16" />.
+        Once the preview pane refreshes, the dead chameleon should go away to
+        reveal the editor pane, and you should be all set to start modifying your website's styles. Yipee!
+    </p>
+    <img class="screenshot" src="/static/img/docs/working-transmogrifier.png" alt="{{ appname }} transmogrifier that's been wired up successfully" />
+    <h2><a name="import-existing-styles">Import your website's existing styles (optional):</a></h2>
+    <p>
+        Now that we've got {{ appname }} up and running with our website, how
+        do we get our existing styles into {{ appname }}'s editor?
+    </p>
+    <p>
+        Well, we've got a couple of options. The low-tech, snooze-fest option
+        is to just copy-and-paste your existing styles into the editor. Simple
+        (and boring) as that.
+    </p>
+    <p>
+        The other, lazier (and therefore awesome-er) option, is to use
+        {{ appname }}'s built-in importer.
+
+        To use the importer, just replace &quot;/editor&quot; with
+        &quot;/import&quot; in your browser's address bar when you're looking
+        at the editor for your website.
+    </p>
+    <p>
+        So, if the editor URL is:
+        
+        <code>http://www.webputty.net/page/1234<strong>/editor</strong></code>
+        </p>
+        <p>you can get to the importer by going to:
+        
+        <code>http://www.webputty.net/page/1234<strong>/import</strong></code>.
+    </p>
+    <p>
+        Once there, the importer will give you a run-down of what's about to
+        happen, and if you're ready to go, just click &quot;Yes&quot;, and then
+        sit back and watch the spinning chameleon while your existing
+        stylesheets are imported into {{ appname }}:
+    </p>
+    <img class="screenshot" src="/static/img/docs/dizzy-chameleon-style-importer.png" alt="The {{ appname }} Dizzy Chameleon Style Importer&trade; at work" />
+    <p>
+        After a few spins, {{ appname }} will return you to the editor for your
+        site, and you should see all the existing styles for your website in
+        the editor. Coolness!
+    <p>
+    <img class="screenshot" src="/static/img/docs/imported-styles.png" alt="{{ appname }} transmogrifier after successfully importing a site's existing styles" />
+    <p>
+        Now that your site's existing CSS has been imported, you can safely
+        remove the old <code>&lt;link&gt;</code> and <code>&lt;style&gt;</code>
+        tags from your website.
+    <p>
+        So, to continue our example from earlier, our website's HTML will go
+        from this:
+    </p>
+<pre class="prettyprint" rel="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;My Splendiferous Website&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="mystylez.css" /&gt; &lt;!-- old, existing stylesheet --&gt;
+
+  &lt;!-- magical {{ appname }} tags --&gt;
+  &lt;link rel="stylesheet" type="text/css" href="{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M.css{% else %}{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}{% endif %}" /&gt;
+  &lt;script type="text/javascript"&gt;(function(w,d){if(w.location!=w.parent.location||w.location.search.indexOf('__preview_css__')>-1){var t=d.createElement('script');t.type='text/javascript';t.async=true;t.src='{{ url_for('js', page_key='agtzfmNzc2ZpZGRsZXIMCxIASDFnZRjwvx8M', _external=True) }}';(d.body||d.documentElement).appendChild(t);}})(window,document);&lt;/script&gt;
+  &lt;!-- magical {{ appname }} tags --&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;My Splendiferous Website!&lt;/h2&gt;
+    ...
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        To this:
+    </p>
+<pre class="prettyprint" rel="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;My Splendiferous Website&lt;/title&gt;
+
+  &lt;!-- magical {{ appname }} tags --&gt;
+  &lt;link rel="stylesheet" type="text/css" href="{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M.css{% else %}{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}{% endif %}" /&gt;
+  &lt;script type="text/javascript"&gt;(function(w,d){if(w.location!=w.parent.location||w.location.search.indexOf('__preview_css__')>-1){var t=d.createElement('script');t.type='text/javascript';t.async=true;t.src='{{ url_for('js', page_key='agtzfmNzc2ZpZGRsZXIMCxIASDFnZRjwvx8M', _external=True) }}';(d.body||d.documentElement).appendChild(t);}})(window,document);&lt;/script&gt;
+  &lt;!-- magical {{ appname }} tags --&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;My Splendiferous Website!&lt;/h2&gt;
+    ...
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        Look how <em>AWESOME</em> that HTML looks now! Just one little
+        <code>&lt;link&gt;</code> tag to pull in your styles from
+        {{ appname }}, and a tiny <code>&lt;script&gt;</code> tag to get the
+        preview pane working when you're using {{ appname }}'s transmogrifier.
+        That's it!
+    </p>
+    <p>
+        Now that we've got everything set up, you're ready to go! If you'd like
+        to learn more about using {{ appname }}'s transmogrifier, you can watch
+        the
+        <a href="{{ url_for('views.home') }}">overview video on our homepage</a>,
+        and if you'd like to learn some of the more advanced features that
+        {{ appname }} has to offer, check out our article on
+        {{ doc_link('development-environments', link_text='using %s in your development environment' % appname) }}.
+    </p>
+    <p>
+        Return to the {{ doc_link('toc') }}.
+    </p>
+{% endblock %}

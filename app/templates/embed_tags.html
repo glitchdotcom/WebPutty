@@ -1,0 +1,2 @@
+<link rel="stylesheet" type="text/css" href="{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/{{ page.key() }}.css{% else %}{{ url_for('css', page_key=page.key(), _external=True) }}{% endif %}" />
+<script type="text/javascript">(function(w,d){if(w.location!=w.parent.location||w.location.search.indexOf('__preview_css__')>-1){var t=d.createElement('script');t.type='text/javascript';t.async=true;t.src='{{ url_for('js', page_key=page.key(), _external=True) }}';(d.body||d.documentElement).appendChild(t);}})(window,document);</script>

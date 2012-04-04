@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Stats cron task{% endblock %}
+
+{% block content_class %}stats-cron{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    <p>
+        Successfully updated user/site stats:
+        <ul>
+            <li>
+                user:all
+                <ul>
+                    <li>Old value: {{ saved_user_count }}</li>
+                    <li>New value: {{ current_user_count }} (+{{ current_user_count - saved_user_count }})
+                </ul>
+            </li>
+            <li>
+                site:all
+                <ul>
+                    <li>Old value: {{ saved_site_count }}</li>
+                    <li>New value: {{ current_site_count }} (+{{ current_site_count - saved_site_count }})
+                </ul>
+            </li>
+        </ul>
+    </p>
+</div>
+{% endblock %}

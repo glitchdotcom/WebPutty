@@ -1,0 +1,10 @@
+User-Agent: *
+Disallow: /css/
+Disallow: /example/
+Disallow: /guider/
+Disallow: /invitation/
+Disallow: /invite/
+Disallow: /js/
+Disallow: /page/
+Disallow: /site/
+Disallow: /style/

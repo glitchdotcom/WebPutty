@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Database Schema Migration{% endblock %}
+
+{% block content_class %}migrate{% endblock %}
+
+{% block content %}
+<p>Successfully migrated from schema version {{ old_version }} to schema version {{ schema.version }}.</p>
+{% endblock %}

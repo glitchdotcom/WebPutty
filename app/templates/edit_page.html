@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{% trans %}Edit Stylesheet{% endtrans %}{% endblock %}
+
+{% block extra_headjs %}
+    '/static/js/editor-package/edit_page.js',
+{% endblock %}
+
+{% block content_class %}editpage{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    {% include "page_editor.html" %}
+</div>
+{% endblock %}

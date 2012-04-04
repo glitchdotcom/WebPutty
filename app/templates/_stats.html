@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content_class %}stats{% endblock %}
+
+{% block title %}{{ appname }} Stats{% endblock %}
+
+{% block extra_headjs %}
+{{ js_package('stats', True) }},
+{% endblock %}
+
+{% macro day_chart(target_id, chart_title, y_axis, data, data_units) -%}
+    new Highcharts.Chart({
+        chart: {
+         renderTo: '{{ target_id }}',
+         defaultSeriesType: 'line',
+         marginRight: 60,
+         marginBottom: 110
+      },
+      title: {
+         text: '{{ chart_title }}',
+         x: -20 //center
+      },
+      xAxis: {
+        title: {
+            text: 'Date'
+        },
+         categories: [{% for day in data[0] %}'{{ day[0] }}'{% if not loop.last %}, {% endif %}{% endfor %}]
+      },
+      yAxis: {
+         title: {
+            text: {% if y_axis %}'{{ y_axis }}'{% else %}null{% endif %}
+         },
+         min: 0,
+         plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+         }]
+      },
+      plotOptions: {
+         line: {
+            dataLabels: {
+               enabled: true
+            }
+         }
+      },
+      tooltip: {
+         formatter: function() {
+               return '<b>'+ this.series.name +'</b>: ' + this.y;
+         }
+      },
+        series: [
+            {% for data_set in data %}
+            {
+                name: '{{ data_units[loop.index - 1] }}',
+                data: [{% for day in data_set %}{% if day[1] %}{{ day[1] }}{% else %}0{% endif %}{% if day and not loop.last %}, {% endif %}{% endfor %}]
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+      ]
+   })
+{%- endmacro %}
+
+{% block extra_script %}
+head(function() {
+    var css_day_chart = {{ day_chart('day_views', 'CSS Requests by Day', 'Requests', [day_views], ['Requests']) }};
+    var users_day_chart = {{ day_chart('day_users', 'Total Users by Day', 'Users', [day_users], ['User Accounts']) }};
+    var sites_day_chart = {{ day_chart('day_sites', 'Total Sites by Day', 'Sites', [day_sites], ['Sites']) }};
+});
+{% endblock %}
+
+{% block content %}
+<div class="clearfix">
+    <div id="day_views" class="graph"></div>
+    <div id="day_users" class="graph"></div>
+    <div id="day_sites" class="graph"></div>
+</div>
+<div class="dlg-page">
+    <h2>Top websites hosting CSS with {{ appname }} today</h2>
+    <table class="referrer">
+        <tr>
+            <th>Referrer</th>
+            <th>Total requests</th>
+            <th>Preview CSS</th>
+            <th>Published CSS</th>
+        </tr>
+        {% for name, count, id, preview_size, published_size in top_referrers %}
+        <tr>
+            <td>
+                {% if users.is_current_user_admin() %}
+                <a href="{{ url_for('_whois', key=id) }}" target="_blank" title="View entity in datastore viewer">
+                    <img src="/static/img/magnify.png" alt="magnifying glass" width="10" height="10" />
+                </a>
+                {% endif %}
+                <a href="http://{{name}}" target="_blank" title="Open this site in a new tab...">{{ name }}</a>
+            </td>
+            <td>{{ count }}</td>
+            <td>
+                {% if preview_size > 0 %}
+                <a href="{{ url_for('css', page_key=id, pretty=1, preview=1) }}" target="_blank" title="View preview CSS">
+                    <img src="/static/img/magnify.png" alt="magnifying glass" width="10" height="10" />
+                </a>
+                {% endif %}
+                {{ fmt_size(preview_size) }}
+            </td>
+            <td>
+                {% if published_size > 0 %}
+                <a href="{{ url_for('css', page_key=id, pretty=1) }}" target="_blank" title="View published CSS">
+                    <img src="/static/img/magnify.png" alt="magnifying glass" width="10" height="10" />
+                </a>
+                {% endif %}
+                {{ fmt_size(published_size) }}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No referrer counters found :(</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

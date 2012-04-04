@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Database Schema Migration{% endblock %}
+
+{% block content_class %}migrate{% endblock %}
+
+{% block content %}
+<form method="POST">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+    <p>Current schema version: {{ schema.version }}</p>
+    {% if migrations %}
+    <p>Migrations to run:</p>
+    <ul>
+        {% for migration in migrations %}
+        <li>{{ migration }}</li>
+        {% endfor %}
+    </ul>
+    <p>Are you sure you want to run migrations?</p>
+    <p>
+        <input type="submit" name="fGo" value="Yes" />
+        <input type="submit" name="fCancel" value="No" />
+    </p>
+    {% else %}
+    <p>No migrations to run. :)</p>
+    {% endif %}
+</form>
+{% endblock %}

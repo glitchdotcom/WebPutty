@@ -1,0 +1,35 @@
+<table cellspacing="0" cellpadding="0" border="0" style="color: #333; font: 14px/18px 'Helvetica Neue', Arial, Helvetica; background: #fff; padding: 0; margin: 0; width: 100%;">
+  <tbody><tr width="100%">
+    <td valign="top" align="left">
+      <table style="margin: 0 auto; width: 600px;"> 
+        <tbody>
+          <tr width="100%">
+            <td valign="top" align="left">
+                <h1 style="color: #222; font-size: 24px; line-height: 24px; margin-bottom: 12px;">{{ appname }}<span style="color: #666; font-size: 12px;">{% trans %}beta{% endtrans %}</span></h1>
+            </td>
+          </tr>
+          <tr width="100%">
+            <td>
+              <div>
+                <p style="margin: 0 0 20px 0;">
+                  {% trans email=invite.inviter.email() %}
+                  <b>{{ email }}</b> has invited you to work on a website with them in {{ appname }}.
+                  {% endtrans %}
+                </p>
+                <a href="{{ url_for('invitation', hash=invite.hash, _external=True) }}" style="-webkit-appearance: none; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; background: #3AA54C; border: 1px solid #2F7D3D; color: #fff; cursor: pointer; display: inline-block; font-weight: 700; line-height: 20px; margin: 0 auto 30px; padding: 6px 15px; text-decoration: none;">{% trans site_name=invite.site.name %}Click here to start working on &quot;{{ site_name }}&quot;{% endtrans %}</a>
+                <h3>{% trans %}What's {{ appname }}?{% endtrans %}</h3>
+                <p>
+                {% trans %}
+                {{ appname }} is like a transmogrifier for your website. It lets you edit your website's CSS in one pane and see a live preview of how those changes will look in another, all without inflicting any half-baked designs on your website's visitors. Once you're happy with your new design though, you're only a button click away from publishing those styles and making them live on your website. <a href="http://blog.fogcreek.com/webputty-css-editing-goes-boink/">Read more...</a>
+                {% endtrans %}
+                </p>
+                <p>{% trans %}Enjoy!{% endtrans %}</p>
+                <p>{% trans %}--The {{ appname }} People{% endtrans %}</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr></tbody>
+</table>

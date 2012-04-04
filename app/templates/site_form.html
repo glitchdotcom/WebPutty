@@ -1,0 +1,6 @@
+<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+<p>
+    {{ form.name.label }}
+    {{ form.name }}
+</p>
+{% include "form_errors.html" %}

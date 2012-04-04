@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}Release Notes{% endtrans %}{% endblock %}
+
+{% block content_class %}release-notes{% endblock %}
+
+{% block extra_left_nav %}
+<li class="chevron">&raquo;</li>
+<li>{% trans %}Release Notes{% endtrans %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="dlg-page chameleon-bg">
+    <h1>{% trans %}What's shakin' with {{ appname }}?{% endtrans %}</h1>
+
+    <div class="release">
+        <h2><span title="Operation &quot;Flash&quot; No, not that multimedia browser thing, the guy with lightning bolts on his head. You know, he's really fast?"><a name="v1.3.0">v1.3.0</a></span> December 12, 2011</h2>
+        <ul>
+            <li>Moved hosting of CSS files to Google Cloud Storage. <b>Note: This means you should <a href="{{ url_for('views.docs', doc_key='getting-started') }}#wiring-things-up">update your embed tags</a>.</b><br />
+                This change helps us accomplish three things:
+                <ul>
+                    <li>Faster serving of CSS content &ndash; Serving CSS from Google Cloud Storage is 5-10 times faster than Google App Engine.</li>
+                    <li>More reliable hosting &ndash; Google Cloud Storage is less likely to go down, and will not be affected by App Engine quotas</li>
+                    <li>Lower costs. This is more for us than you, but it allows us to continue offering WebPutty for free longer.</li>
+                </ul>
+            </li>
+            <li>Added auto-completion in the {{ appname }} editor. While you are typing, press Control-Space to activate auto-complete.</li>
+            <li>Enable line-wrapping in the {{ appname }} editor.</li>
+            <li>Added a blue chameleon to let you know when you've incorrectly used a relative link in your stylesheet.</li>
+            <li>Fixed a number of bugs, including a major bug in PySCSS that caused radial-gradients not to work in WebKit browsers.</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <h2><span title="Operation &quot;Zut alors!&quot;"><a name="v1.2.0">v1.2.0</a></span> October 12, 2011</h2>
+        <ul>
+            <li>Added support for using {{ appname }}'s editor in <span title="Yes, it's a poopy old browser at this point, but at least you can poke at your SCSS until your website looks ok in IE8 using {{ appname }} now! YAY!">Internet Explorer 8<span></li>
+            <li>Added support for <a href="https://github.com/scottjehl/Respond" title="A fast &amp; lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)" target="_blank">Respond.js</a> ({{ doc_link('respond-js', link_text="here's how to use it") }})</li>
+            <li>
+                Added {{ doc_link(link_text='documentation') }} explaining how to do all sorts of awesome things with {{ appname }}, including:
+                <ul>
+                    <li>{{ doc_link('getting-started') }}</li>
+                    <li>{{ doc_link('development-environments') }}</li>
+                    <li>{{ doc_link('respond-js') }}</li>
+                </ul>
+            </li>
+            <li>Added a <a href="#" class="btn-set-locale" title="Sacrebleu!">French translation</a> of {{ appname }} (with more languages to follow!)</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <h2><span title="Operation &quot;Series of Tubes&quot;"><a name="v1.1.0">v1.1.0</a></span> August 25, 2011</h2>
+        <ul>
+            <li>Added support for multiple preview URLs in the editor</li>
+            <li>Added the ability to embed <a href="http://getfirebug.com/firebuglite" target="_blank">Firebug Lite</a> into the preview pane for DOM inspection and other flavors of magic <span class="warning" title="It mostly works, but the CSS pane in Firebug Lite doesn't always stay in sync as you modify styles via {{ appname }}'s editor.">(Experimental!)</span></li>
+            <li>Not-so-sneakily released an early version of our new <span title="Just replace /editor with /import at the end of the URL in your browser when you're in the editor to try it out. But, shhhh! It's still sort-of/not-really secret!">Import Stylesheets</span> feature</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <h2><span title="Can you tell we hadn't really started keeping track of release notes yet?"><a name="v1.0.x">v1.0.x</a></span> July 20, 2011 - August 25, 2011</h2>
+        <ul>
+            <li>Miscellaneous bug fixes, speed improvements, and good old spit-n-polish</li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <h2><span title="Why, yes, this version number was completely pulled out of thin air. How'd you know? No seriously, who told you? Was it Nina from Corporate Accounts Payable? It was, wasn't it?"><a name="v1.0.0">v1.0.0</a></span> July 20, 2011</h2>
+        <ul>
+            <li>
+            Initial, miraculous, fantabulous release.
+            Yay!
+            <span title="The 'party noises!' tag is part of the forthcoming HTML6 standard. What? Of course we're serious. What kind of operation do you think this is? One that uses title attributes all willy-nilly for tawdry jokes and cries for attention? Puh-lease!">&lt;party noises! /&gt;</span>
+            </li>
+        </ul>
+        <p>
+            {% trans %}
+            Dying to know more? Read <a href="http://blog.fogcreek.com/webputty-css-editing-goes-boink/?fccmp=webputty" target="_blank" title="WebPutty: CSS editing goes &quot;boink&quot;">about the launch</a> or how {{ appname }} went <a href="http://hicks-wright.net/blog/lean-development-zero-to-launch-in-six-weeks/" target="_blank">from zero to launch in just six weeks</a>.
+            {% endtrans %}
+        </p>
+    </div>
+</div>
+{% endblock %}
+

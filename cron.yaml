@@ -1,0 +1,4 @@
+cron:
+- description: update user/site stats job
+  url: /tasks/stats
+  schedule: every day 23:58

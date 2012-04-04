@@ -1,0 +1,99 @@
+{% extends "docs/docbase.html" %}
+
+{% block doc_content %}
+    <ul>
+        <li>
+            <strong>What are &quot;Media Queries&quot; and why might I care?</strong>
+            <p>
+                <a href="http://www.w3.org/TR/css3-mediaqueries/" target="_blank">CSS3 Media Queries</a>
+                are an extension of CSS supported by many modern browsers that
+                give website designers the ability to change their website's
+                layout based on the size of the device being used to view it
+                (among other things). Media Queries are all about
+                <a href="http://www.alistapart.com/articles/responsive-web-design/" target="_blank">Responsive Web Design</a>.
+                Responsive design is great, and you should consider practicing
+                it; especially if you have a lot of mobile visitors to your
+                website.
+            </p>
+        </li>
+        <li>
+            <strong>What is Respond.js? And what about crappy old versions of Internet Explorer?</strong>
+            <p>
+                <a href="https://github.com/scottjehl/Respond" target="_blank">Respond.js</a>
+                is a lightweight
+                <span title="a piece of code that provides the technology that you, the developer, expect the browser to provide natively">polyfill</span>
+                that adds support for basic CSS3 Media Queries to older
+                versions of Internet Explorer (only IE9 and later natively
+                support Media Queries).
+            </p>
+        </li>
+        <li>
+            <strong>What does it mean for {{ appname }} to &quot;support&quot; Respond.js?</strong>
+            <p>
+                Respond.js works by requesting a clean copy of your website's
+                CSS via AJAX, and then translating any of the Media Queries it
+                finds into equivalent JavaScript for browsers that don't
+                support Media Queries directly. Because {{ appname }} isn't on
+                the same domain as your website, browsers'
+                <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">same origin policy</a>
+                prevents this from working (i.e., www.example.com can't make
+                AJAX requests to www.webputty.net without additional cooperation
+                from www.webputty.net's servers).
+            </p>
+            <p>
+                To work around this limitation, Respond.js uses a proxy HTML
+                page on the server hosting your CSS, which in this case is
+                www.webputty.net. <strong>We've added Respond.js's proxy page
+                to {{ appname }}</strong> so that we can &quot;support&quot;
+                people who want to use Respond.js on their websites.
+            </p>
+        </li>
+        <li>
+            <strong>How do I use {{ appname }} with Respond.js?</strong>
+            <ol>
+                <li>
+                    {{ doc_link('getting-started', link_text='Set up your website to use %s' % appname) }}
+                    if you haven't already done that :)
+                </li>
+                <li>
+                    <a href="https://github.com/scottjehl/Respond/archives/master" target="_blank">Download Respond.js</a>
+                    and put its files where you keep your website's JavaScript
+                    and other static resources
+                </li>
+                <li>
+                    Modify your website's <code>&lt;head&gt;</code> element to
+                    match the following:
+                </li>
+            </ol>
+<pre class="prettyprint" rel="HTML">
+&lt;!-- your site's {{ appname }} styles that include Media Queries --&gt;
+&lt;link rel="stylesheet" type="text/css" href="{% if use_google_cloud_storage %}//{{ google_bucket }}.commondatastorage.googleapis.com/agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M.css{% else %}{{ url_for('css', page_key='agtzfmNzc2ZpZGRsZXIMCxIEUGFnZRjwvx8M', _external=True) }}{% endif %}" /&gt;
+&lt;script type="text/javascript"&gt;(function(w,d){if(w.location!=w.parent.location||w.location.search.indexOf('__preview_css__')>-1){var t=d.createElement('script');t.type='text/javascript';t.async=true;t.src='{{ url_for('js', page_key='agtzfmNzc2ZpZGRsZXIMCxIASDFnZRjwvx8M', _external=True) }}';(d.body||d.documentElement).appendChild(t);}})(window,document);&lt;/script&gt;
+
+&lt;!-- Respond.js proxy on {{ appname }} --&gt;
+&lt;link href=&quot;http://www.webputty.net/respond-proxy.html&quot; id=&quot;respond-proxy&quot; rel=&quot;respond-proxy&quot; /&gt;
+
+&lt;!-- Respond.js files on your local server --&gt;
+&lt;script src=&quot;/path/to/respond.src.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;/path/to/respond.proxy.gif&quot; id=&quot;respond-redirect&quot; rel=&quot;respond-redirect&quot; /&gt;
+&lt;script src=&quot;/path/to/respond.proxy.js&quot;&gt;&lt;/script&gt;
+</pre>
+        </li>
+    </ul>
+    <p>
+        And that should about do it. One thing to be warned about though, is
+        that we haven't yet gotten Respond.js's proxy working with
+        {{ appname }}'s live preview pane. So, if you're using the editor
+        with IE8 or older, don't be surprised if your Media Queries don't
+        appear to be working. You're best bet for testing older versions
+        of IE is to use those browsers directly, possibly in combination
+        with the <code>?__preview_css__</code> query string parameter (if you're
+        looking to test the preview version of your styles). You can find more
+        information about that query string parameter, as well as others, in
+        our article about
+        {{ doc_link('development-environments', link_text='using %s in your development environment' % appname) }}.
+    </p>
+    <p>
+        Return to the {{ doc_link('toc') }}.
+    </p>
+{% endblock %}

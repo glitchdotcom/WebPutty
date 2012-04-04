@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{% trans %}Invitation Expired{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    <h2>{% trans %}Invitation Expired{% endtrans %}</h2>
+    <p>
+        {% trans %}Ruh roh. The invitation link you followed seems to have expired. :({% endtrans %}
+    </p>
+    <p>
+        {% trans index_url=url_for('index') %}You can still head over to the <a href="{{ index_url }}" title="Your Sites &amp; Styles">home page</a> to see the list of sites that you <i>are</i> a member of.{% endtrans %}
+    </p>
+</div>
+{% endblock %}

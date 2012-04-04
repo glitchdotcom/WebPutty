@@ -1,0 +1,16 @@
+<h1>{% trans %}Set Your Locale{% endtrans %}</h1>
+<form method="POST" action="{{ url_for('views.set_locale') }}">
+    <p>
+        <label for="locale">{% trans %}Locale:{% endtrans %}</label>
+        <select name="locale">
+            {% for code, name in available_locales %}
+            <option value="{{ code }}"{% if code == locale() %} selected="selected"{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+        <input type="submit" value="{% trans %}Save{% endtrans %}" />
+        <img class="throbber" src="/static/img/throbber.gif" width="16" height="16" />
+    </p>
+</form>

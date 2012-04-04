@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page.name }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" />
+{{ css_package('editor') }}
+{% endblock %}
+
+{% block extra_headjs %}
+    '{{ url_for( 'templatejs', file_name='comm' ) }}',
+    '/_ah/channel/jsapi',
+    {{ js_package('editor', True) }},
+{% endblock %}
+
+{% block extra_script %}
+    Urls['page_rpc'] = '{{ url_for('rpc.page_rpc', page_id=page.key().id()) }}';
+    Urls['page_styles'] = '{{ url_for('page_styles', page_id=page.key().id()) }}';
+    Urls['page_export_css'] = '{{ url_for('css', page_key=page.key(), pretty='') }}';
+    head(function() {
+        Editor.channelToken = '{{ channel_token }}';
+        Editor.pageKey = '{{ page.key() }}';
+        Editor.styles = {{ page.styles_json()|safe }};
+        Editor.ixCurrentStyle = (Editor.styles.length > 0 ? 0 : -1);
+        Editor.preview_css = {{ page.compressed_css(True)|tojson|safe }};
+        Editor.published_css = {{ page.compressed_css(False)|tojson|safe }};
+        Editor.comm = new Comm(Editor.pageKey);
+        Editor.init();
+    });
+    {{ guider('editor_intro') }}
+{% endblock %}
+
+{% block extra_left_nav %}
+<li class="chevron">&raquo;</li>
+<li><a href="/#/site/{{ page.site.key().id() }}">{{ page.site.name }}</a></li>
+<li class="chevron">&raquo;</li>
+<li>{{ page.name }}</li>
+{% endblock %}
+
+{% block extra_right_nav %}
+<li>{{ guider_link('editor_intro', _('Help'), _('How do all these doodads work?')) }}</li>
+{% endblock %}
+
+{% block content_class %}editor{% endblock %}
+
+{% block content %}
+{% set dead_chameleon_doc_link = doc_link('getting-started', link_text='getting started guide', link_title="Let's bring that chameleon back to life!", anchor_name='wiring-things-up', new_window=True) %}
+<div id="content-panes">
+    <div id="preview-pane" class="column left">
+        <div id="content-controls">
+            <div id="page-info">
+                <div id="preview-url-controls">
+                    <select class="page-link">
+                        <option value="{{ page.url }}" selected="selected">{{ page.url }}</option>
+                        {% for url in page.preview_urls %}
+                        <option value="{{ url }}">{{ url }}</option>
+                        {% endfor %}
+                    </select>
+                    <a id="btn-refresh" class="preview-nav-button" href="#" title="{% trans %}Force a refresh of the current preview page{% endtrans %}"><img src="/static/img/refresh.png" alt="{% trans %}Refresh{% endtrans %}" width="14" height="14" /></a>
+                    <a id="btn-open-url" class="preview-nav-button" href="#" title="{% trans %}Open this URL in a new tab{% endtrans %}"><img src="/static/img/external.png" alt="{% trans %}Open in new tab{% endtrans %}" width="14" height="14" /></a>
+                </div>
+                <div id="page-commands">
+                    {% if user in page.site.admins %}
+                    <a id="btn-configure" class="page-command" href="{{ url_for('edit_page', page_id=page.key().id()) }}" title="{% trans %}Edit this stylesheet's name and URL{% endtrans %}">{% trans %}Configure{% endtrans %}</a>
+                    {% endif %}
+                    <a id="btn-embed" class="page-command" href="#" title="{% trans %}View the tags for embedding this stylesheet in your website{% endtrans %}">{% trans %}Embed{% endtrans %}</a>
+                    <a id="btn-add-firebug" class="page-command" href="#" title="{% trans %}Add Firebug Lite to the preview pane{% endtrans %}">{% trans %}Firebug{% endtrans %}</a>
+                </div>
+            </div>
+            <div id="version-controls">
+                <select>
+                    <option value="preview">{% trans %}Preview{% endtrans %}</option>
+                    <option value="published">{% trans %}Published{% endtrans %}</option>
+                </select>
+                <span class="last-saved">{% trans timestamp=timesince(page.last_modified(True)) %}Last modified <span id="style-dt-last-edit">{{ timestamp }}</span>{% endtrans %}</span>
+            </div>
+        </div>
+        <div id="iframe-wrapper">
+            <iframe id="preview-iframe" class="fancy-scrollbar" src="{{ page.url }}" onload="window.previewFrameLoaded = true;"></iframe>
+            <div class="drag-shim"></div>
+        </div>
+    </div>
+    <div id="drag-handle" class="columns"></div>
+    <div id="edit-pane" class="column right loading">
+        <div id="publish-controls">
+            <div class="switch">
+                <div id="btn-column-layout" class="switch-option selected vertical-panes"><span>{% trans %}Vertical Split Panes{% endtrans %}</span></div>
+                <div id="btn-row-layout" class="switch-option horizontal-panes"><span>{% trans %}Horizontal Split Panes{% endtrans %}</span></div>
+            </div>
+            <input type="button" value="{% trans %}Publish{% endtrans %}" id="btn-publish" class="publish" disabled="disabled" />
+            <a id="btn-export" class="export" href="{{ url_for('css', page_key=page.key(), pretty='', preview='') }}" target="_blank" title="{% trans %}Export an indented, plain-CSS copy of the current stylesheet{% endtrans %}">{% trans %}Export{% endtrans %}</a>
+            <span id="msg" class="success">message</span>
+        </div>
+        <div id="scss-warning-log"></div>
+        <div id="editor-wrapper">
+            <noscript>
+                <div id="noscript" class="editor-msg">
+                    <p><b>{% trans %}Oh no!{% endtrans %}</b></p>
+                    <p>{% trans %}It looks like you've got JavaScript turned off.{% endtrans %}</p>
+                    <p>{% trans %}{{ appname }} needs JavaScript in order to do its magic.{% endtrans %}</p>
+                    <p>{% trans %}Help us bring back the magic (by enabling JavaScript)!{% endtrans %}</p>
+                    <p><img src="/static/img/dead-chameleon.png" title="{% trans %}9 out of 10 dead {{ appname }} chameleons can be revived by enabling JavaScript{% endtrans %}" width="128" height="128" /></p>
+                </div>
+            </noscript>
+            <div id="css-loader"></div>
+            <div id="missing-tags" class="editor-msg">
+                <p><b>{% trans %}Oh no!{% endtrans %}</b></p>
+                <p>{% trans %}We couldn't find the necessary tags for this stylesheet in this page.{% endtrans %}</p>
+                <p>{% trans %}Just getting started? <a id="btn-fix-it" href="#" title="Let's wire this thing up!">Click here</a> and we'll help you get things wired up.{% endtrans %}</p>
+                <p><img src="/static/img/dead-chameleon.png" title="{% trans %}Little-known fact: a {{ appname }} chameleon's diet consists almost entirely of embedded tags{% endtrans %}" width="128" height="128" /></p>
+                <p>{% trans %}Already embedded the necessary tags? Please double-check that <strong>both</strong> the <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags show up when you navigate to your website and view the source of the page.{% endtrans %}</p>
+                <p>{% trans %}If everything looks ok there, you might want to check out our {{ dead_chameleon_doc_link }}.{% endtrans %}</p>
+                <p class="subtle"><br /><a id="btn-missing-tags-override" href="#">{% trans %}I know what I'm doing (for serious), please let me edit my stylesheet anyway.{% endtrans %}</a></p>
+            </div>
+            <div class="drag-shim"></div>
+        </div>
+        <span id="lock-msg" class="locked">{% trans %}Locked by another user{% endtrans %}</span>
+        <a id="btn-scss-warning" href="#" title="{% trans %}{{ appname }} detected some problems with your (S)CSS. Click here to find out more...{% endtrans %}" style="display:none;"><img src="/static/img/exclamation.png" alt="{% trans %}Found stylesheet errors{% endtrans %}" width="16" height="16" /></a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div id="embed-dlg" style="display:none;">
+    <div class="embed-msg">
+        <div class="missing-tags">
+            <p class="warning">{% trans %}The necessary tags for this stylesheet have not been embedded in this page.{% endtrans %}</p>
+            <p>{% trans %}No idea what that means? Check out our {{ dead_chameleon_doc_link }}.{% endtrans %}</p>
+            <br />
+        </div>
+        <p>{% trans %}Copy the code below and paste it right before the <code>&lt;/head&gt;</code> tag in this page.{% endtrans %}</p>
+        <p class="missing-tags">{% trans %}Once you've embedded these tags, refresh this page to get started.{% endtrans %}</p>
+
+        <textarea class="embed" autocomplete="off">{% filter forceescape %}{% include "embed_tags.html" %}{% endfilter %}</textarea>
+    </div>
+</div>
+<div id="dlg-editpage" class="dlg" style="display:none;"></div>
+<div id="dlg-missingtags" class="dlg" style="display:none; width: 450px;">
+    <h2>Ruh-roh! We couldn't find {{ appname }}'s <code>&lt;link&gt;</code> tag!</h2>
+    <p>
+        {% trans %}
+        It looks like some of the embedded tags {{ appname }} needs are missing from
+        your website. The <code>&lt;script&gt;</code> tag appears to be there, but it
+        wasn't able to find the <code>&lt;link&gt;</code> tag that actually pulls in
+        your {{ appname}} styles.
+        {% endtrans %}
+    </p>
+    <p>
+        {% trans %}
+        Please make sure both the <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code>
+        tags show up when you navigate to your website and view the source of the page.
+        {% endtrans %}
+    </p>
+</div>
+{% endblock %}

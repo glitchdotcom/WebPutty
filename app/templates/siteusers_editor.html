@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    Urls['remove_user'] = '{{ url_for('remove_user', site_id=site.key().id()) }}';
+</script>
+<h1>{% trans site_name=site.name %}Users for "{{ site_name }}"{% endtrans %}</h1>
+<form action="{{ url_for('invite', site_id=site.key().id()) }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+    <table>
+        <tr>
+            <th colspan="3">{% trans %}Admins{% endtrans %}</th>
+        </tr>
+        {% for admin in site.admins %}
+        <tr data-role="admin" data-user="{{ admin.user_id() }}">
+            <td>{{ admin.nickname() }}</td>
+            <td>{{ admin.email() }}</td>
+            <td>
+            {% if user in site.admins and user != admin %}
+                <button class="removeAdmin">{% trans %}Remove Admin{% endtrans %}</button>
+            {% else %}
+                &nbsp;
+            {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3" class="empty">{% trans %}No admins (other than you){% endtrans %}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <th colspan="3">{% trans %}Editors{% endtrans %}</th>
+        </tr>
+        {% for site_user in site.users %}
+        <tr data-role="editor" data-user="{{ site_user.user_id() }}">
+            <td>{{ site_user.nickname() }}</td>
+            <td>{{ site_user.email() }}</td>
+            <td>
+            {% if user in site.admins and user != site_user %}
+                <button class="removeUser">{% trans %}Remove{% endtrans %}</button>
+            {% else %}
+                &nbsp;
+            {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3" class="empty">{% trans %}No editors (other than you){% endtrans %}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <th colspan="3">{% trans %}Add a User{% endtrans %}</th>
+        </tr>
+        <tr>
+            <td>
+                {{ invite_form.email.label }}:
+                {{ invite_form.email }}
+            </td>
+            <td>
+                {{ invite_form.admin.label }}:
+                {{ invite_form.admin }}
+            </td>
+            <td>
+                <input type="submit" value="{% trans %}Invite{% endtrans %}" />
+                <img class="throbber" src="/static/img/throbber.gif" width="16" height="16" />
+            </td>
+        </tr>
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <tr>
+            <td colspan="3" class="flash flash-{{ category }}">{{ msg }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</form>

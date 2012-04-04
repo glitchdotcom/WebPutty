@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %} - {{ appname }}</title>
+        {{ css_package('shared') }}
+        <script type="text/javascript" src="/static/js/head.min.js"></script>
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <ul class="left-menu">
+                    <li class="app-logo"><a href="{{ url_for('views.index') }}" title="{% trans %}Your Sites &amp; Styles{% endtrans %}">{{ appname }}</a></li>
+                    {{ release_notes_flair() }}
+                    {% block extra_left_nav %}{% endblock %}
+                </ul>
+                <ul class="right-menu">
+                    {% if user %}
+                    <li class="username">{{ user.nickname() }}</li>
+                    {% block extra_right_nav %}{% endblock %}
+                    <li>{{ doc_link() }}</li>
+                    <li><a href="{{ users.create_logout_url(url_for('views.index')) }}" title="{% trans %}Peace out{% endtrans %}" id="logout">{% trans %}Logout{% endtrans %}</a></li>
+                    {% else %}
+                    <li>{{ doc_link() }}</li>
+                    <li><a href="{{ users.create_login_url(url_for('views.index')) }}" title="{% trans %}Let's rock this thing{% endtrans %}" id="login">{% trans %}Login{% endtrans %}</a></li>
+                    {% endif %}
+                    {% if debug and debug_profiler_enabled %}
+                    <li><a href="" id="toggleMiniProfiler" onclick="$('.g-m-p-corner').toggle(); return false;" title="Toggle visibility of mini profiler">Toggle Profiler</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div id="content" class="{% block content_class %}{% endblock %}">
+            {% block content %}
+            {% endblock %}
+            </div>
+            <div id="footer">
+                <a href="http://www.fogcreek.com/?fccmp=webputty" target="_blank" title="{% trans %}To the mothership!{% endtrans %}">Fog Creek Software</a>, Inc. &copy; 2011 |
+                <a href="{{ url_for('views.credits') }}" title="{% trans %}Givin' it where it's due{% endtrans %}">{% trans %}Credits{% endtrans %}</a> |
+                <a href="{{ url_for('views.release_notes') }}" title="{% trans %}We don't always write release notes, but when we do, we write them here. Stay current my friends.{% endtrans %}">v{{ appversion }}.{% include "version.html" %}</a>
+                | <a href="{{ url_for('views.set_locale') }}" class="btn-set-locale">{{ locale() }}</a>
+                {% block extra_footer %}{% endblock %}
+            </div>
+        </div>
+        <div id="dlg-locale" class="dlg" style="display:none">
+            {% include "locale_editor.html" %}
+        </div>
+        <script type="text/javascript">
+            window._csrf_token = '{{ csrf_token() }}';
+            var Urls = window.Urls = {};
+            Urls['saw_guider'] = '{{ url_for('views.saw_guider') }}';
+            head.js(
+                {'jquery': '{{ jquery_url }}'},
+                {'guider': '{{ url_for('views.templatejs', file_name='guiders') }}'},
+                '{{ url_for('views.templatejs', file_name='console') }}',
+                {{ js_package('shared', True) }},
+                {% block extra_headjs %}{% endblock %}
+                function() {
+                    $.ajaxPrefilter(function(options, originalOptions){
+                        if (options.type.match(/post/i)) {
+                            options.data = '_csrf_token=' + _csrf_token + '&' + options.data;
+                        }
+                    });
+                });
+            {% block extra_script %}{% endblock %}
+        </script>
+        {{ profiler_includes()|safe }}
+    </body>
+</html>

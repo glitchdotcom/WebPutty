@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}Import Existing CSS{% endtrans %}{% endblock %}
+
+{% block content_class %}import{% endblock %}
+
+{% macro yes_cancel() -%}
+    <form action="{{ url_for('page_import', page_id=page.key().id()) }}" method="post">
+        <input type="submit" name="fOk" value="{% trans %}Yes{% endtrans %}" />
+        <input type="submit" name="fNo" value="{% trans %}Cancel{% endtrans %}" />
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+    </form>
+{%- endmacro %}
+
+{% block content %}
+    <div class="dlg-page" style="display: block; width: 500px; margin: 0 auto;">
+        {% if page.import_state == 0 %}
+        <h1>{% trans %}Import CSS{% endtrans %}</h1>
+        <p>{% trans %}Importing will add any of the existing CSS on your page (i.e., <code>&lt;link&gt;</code> and <code>&lt;style&gt;</code> tags) to the top of the preview (unpublished) version of your {{ appname }} style.{% endtrans %}</p>
+        <p>{% trans page_name=page.name, page_url=page.url %}Are you sure you want to continue importing the CSS for <b>{{ page_name }}</b> from <a href="{{ page_url }}" target="_blank">{{ page_url }}</a>?{% endtrans %}</p>
+        {{ yes_cancel() }}
+        {% elif page.import_state == 1 %}
+        <h1>{% trans %}Just a sec...{% endtrans %}</h1>
+        <p>{% trans %}We are currently importing your existing CSS. This shouldn't take too long...{% endtrans %}</p>
+        <div class="spinner-container"><img src="/static/img/chameleon-200.png" id="spinning-chameleon" width="200" height="185" alt="{% trans %}Chameleon on a branch{% endtrans %}" /></div>
+        <script type="text/javascript">
+            function getTransformProperty(element) {
+                // Note that in some versions of IE9 it is critical that
+                // msTransform appear in this list before MozTransform
+                var properties = ['transform','WebkitTransform','msTransform','MozTransform','OTransform'];
+                var p;
+                while (p = properties.shift()) {
+                    if (typeof element.style[p] != 'undefined') { return p; }
+                }
+                return false;
+            }
+            head(function() {
+                $(function() {
+                    var el = $('#spinning-chameleon')[0];
+                    var d = 0;
+                    var property = getTransformProperty(el);
+                    if (property) {
+                        setInterval(function() {
+                            el.style[property] = 'rotate(' + (d++ % 360) + 'deg)';
+                            if (d == (360 * 3)) window.location.reload();
+                        }, 5);
+                    }
+                });
+            });
+        </script>
+        {% elif page.import_state == 4 %}
+        <h1>{% trans %}Re-import CSS?{% endtrans %}</h1>
+        <p>{% trans page_name=page.name, page_url=page.url %}You've already imported the CSS for <b>{{ page_name }}</b> from <a href="{{ page_url }}" target="_blank">{{ page_url }}</a>.{% endtrans %}</p>
+        <p>{% trans page_name=page.name %}Are you sure you want to continue with re-importing the CSS for <b>{{ page_name }}</b>?{% endtrans %}</p>
+        {{ yes_cancel() }}
+        {% endif %}
+    </div>
+{% endblock %}

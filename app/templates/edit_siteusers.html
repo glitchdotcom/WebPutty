@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}{% trans site_name=site.name %}Configure {{ site_name }}{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    {% include "siteusers_editor.html" %}
+</div>
+{% endblock %}

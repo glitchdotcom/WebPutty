@@ -1,0 +1,11 @@
+*.orig
+index.yaml
+*.pyc
+*combined.js
+*combined.css
+*compressed.css
+*compressed.js
+hashed-*.css
+hashed-*.js
+.DS_Store
+ziplibs.zip

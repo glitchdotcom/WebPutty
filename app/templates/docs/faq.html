@@ -1,0 +1,263 @@
+{% extends "docs/docbase.html" %}
+
+{% block doc_content %}
+    <p>
+        You've got questions about {{ appname }}, and you want answers. Well
+        here they are! If you've gotten here, but still aren't quite sure what
+        the heck {{ appname }} actually <em>does</em>, you can check out
+        <a href="{{ url_for('views.home') }}">our landing page</a> which gives
+        a good summary of what {{ appname }} sets out to do.
+    </p>
+    <ul>
+        <li>
+            <strong>Why does {{ appname }} require a Google account? And what about my privacy?</strong>
+            <p>
+                We use Google Accounts (such as Gmail accounts) for
+                authentication for a number of reasons:
+            </p>
+            <ol>
+                <li>they're free and easy to create</li>
+                <li>almost everyone already has one </li>
+                <li>
+                    they're super easy for us to use ({{ appname }}
+                    currently runs on
+                    <a href="http://code.google.com/appengine/" target="_blank">Google App Engine</a>
+                    which makes using Google Accounts for authentication
+                    crazy-easy)
+                </li>
+            </ol>
+            <p>
+                But don't worry! We only get access to your email address (not
+                your name, or the birth certificate of your first-born child,
+                or anything else for that matter), and we promise not to use it
+                for anything evil. Seriously. In fact, currently we don't use
+                your email address for anything other than telling that you're
+                you. That's it.
+            </p>
+        </li>
+        <li>
+            <strong>Does {{ appname }} work with HTTPS/SSL websites? / I'm getting a &quot;mixed content&quot; warning. What gives?</strong>
+            <p>
+                Yes! {{ appname }} stores your stylesheets on
+                <a href="https://developers.google.com/storage/" target="_blank">Google Cloud Storage</a>
+                which fully supports HTTPS/SSL.
+            </p>
+            <p>
+                If you're getting a mixed content warning when you're viewing
+                your website directly (i.e., <em>not</em> via {{ appname }}'s editor),
+                your embed tags are probably out of date. Just log into
+                {{ appname }}, navigate to your website's stylesheet, click on
+                the &quot;Embed&quot; link at the top of the preview pane, and
+                use the <code>&lt;link&gt;</code> and
+                <code>&lt;script&gt;</code> tags shown there to update those
+                already embedded in your website.
+            </p>
+            <p>
+                If you're getting a mixed content warning when you're using
+                {{ appname }}'s editor, this is expected and can safely be
+                ignored.
+            </p>
+        </li>
+        <li>
+            <strong>Can I use {{ appname }} with an existing website? How do I get my existing styles into {{ appname }}?</strong>
+            <p>
+                You definitely can! To get your existing styles into
+                {{ appname }} you can either a) copy-and-paste them in
+                (a.k.a., snooze-fest), or b) use our fancy-pants
+                {{ doc_link('getting-started', link_text='importer', link_title='Complete with spinning chameleon!', anchor_name='import-existing-styles') }}
+                tool (cool!).
+            </p>
+        </li>
+        <li>
+            <strong>What browsers does {{ appname }} work with? What about the editor?</strong>
+            <p>
+                Stylesheets served by {{ appname }} should work in any
+                browser that supports the use of the <code>&lt;link&gt;</code>
+                tag (i.e., <span title="Ok, so not Lynx, but you get what we mean">all of them</span>).
+            </p>
+            <p>
+                {{ appname }}'s editor supports the following browsers:
+                <ul>
+                    <li>Google Chrome</li>
+                    <li>Firefox 3+</li>
+                    <li>Internet Explorer 8+</li>
+                    <li>Safari 4+</li>
+                </ul>
+                Basically, {{ appname }}'s editor should work with any browser
+                that supports
+                <code><a href="https://developer.mozilla.org/en/DOM/window.postMessage" target="_blank"> window.postMessage</a></code>,
+                but we actually test current versions of the above listed
+                browsers. So browsers like Opera 9.5+ <em>might</em> work, but
+                we don't really test with it.
+            </p>
+        </li>
+        <li>
+            <strong>How can I share my unpublished (but amazingly awesome) CSS tweaks without publishing them?</strong>
+            <p>
+                Just check out the <code>__preview_css__</code>
+                {{ doc_link('development-environments', link_text='query string parameter', link_title='Do magical things with questions marks and ampersands!', anchor_name='query-string-params') }},
+                and you should be all set.
+            </p>
+        </li>
+        <li>
+            <strong>Can I use {{ appname }} on my local machine?</strong>
+            <p>
+                Definitely! We do it all the time when we're working on
+                {{ appname }} itself.
+            </p>
+            <p>
+                We wrote
+                {{ doc_link('development-environments', link_text='an entire article') }}
+                on using {{ appname }} in your development environment
+                (including using {{ appname }} on your local machine).
+            </p>
+            <p>
+        </li>
+        <li>
+            <strong>Debugging minified CSS sucks, how can I make this suck less?</strong>
+            <p>
+                At the top of your {{ appname }} stylesheet, just add
+                <code>@option compress: no;</code>. This will prevent
+                {{ appname }} from compressing your stylesheet
+                (<strong>Note:</strong> this will apply to both the preview
+                version <em>and</em> the published version or your stylesheet).
+                Just don't forget to remove that line once you're done debugging
+                things! If you leave it in, visitors to your website won't be
+                served minified CSS, which could slow things down&hellip;and no
+                one likes websites being slower than they have to be.
+            </p>
+        </li>
+        <li>
+            <strong>I can haz version control?</strong>
+            <p>
+                Currently, {{ appname }} provides you with two versions for each
+                stylesheet you set up:
+            </p>
+            <ol>
+                <li>the <strong>published</strong> version
+                    <ul>
+                        <li>
+                            this is the &quot;live&quot; copy of your styles that is
+                            served to people visiting your website
+                        </li>
+                        <li>
+                            this copy is minified and gzipped so that it can be served
+                            as quickly as possible
+                        </li>
+                    </ul>
+                </li>
+                <li>the <strong>preview</strong> version
+                    <ul>
+                        <li>
+                            this is the copy of your styles that you can modify in the
+                            editor
+                        </li>
+                        <li>
+                            this copy is what's used by default in the live preview
+                            pane of the editor
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p>
+                As a side note, <strong>every single published revision of your styles
+                is stored by {{ appname }} in its database</strong>; however, currently
+                only the most recent published version and your maliable preview copy
+                are exposed through {{ appname }}'s UI.
+            </p>
+            <p>
+                We <em>do</em> have plans to add additional version control
+                support (think along the lines of Mercurial or Git) in the
+                future, but they're not ready just yet. Stay tuned!
+            </p>
+        </li>
+        <li>
+            <strong>Why doesn't {{ appname }}'s CSS use far-future expires headers?</strong>
+            <p>
+                {{ appname }} stylesheets are in an interesting situation in
+                that they might change at <em>any</em> time. All it takes to
+                change the stylesheet your website's visitors receive is a quick
+                click of the &quot;Publish&quot; button in {{ appname }}'s
+                editor.
+                Once that button's been pressed, {{ appname }} tries to get
+                the just-published copy of your stylesheets out to visitors to
+                your website as quickly as possible.
+            </p>
+            <p>
+                To enable this (without requiring you to change the source code
+                of your website every time you publish a new version of your
+                website's stylesheets) {{ appname }} stylesheets are set to
+                expire after 5 minutes. We feel this gives you a good balance
+                between the cacheability of your {{ appname }} stylesheets and
+                the time it takes for new styles to be served to your website's
+                visitors after publishing a new version of those styles.
+            </p>
+        </li>
+        <li>
+            <strong>Isn't it bad form to put extra <code>&lt;script&gt;</code> tags in the <code>&lt;head&gt;</code> of your website?</strong>
+            <p>
+                Technically yes. Ideally, you want to have all of your
+                <code>&lt;script&gt;</code> tags right at the bottom of your
+                page so that they don't block your page from rendering.
+                {{ appname }} tells you to put both its
+                <code>&lt;link&gt;</code> tag <em>and</em> its
+                <code>&lt;script&gt;</code> in the <code>&lt;head&gt;</code> of
+                your website. So, what gives?
+            </p>
+            <p>
+                We do this because a) that's where the
+                <code>&lt;link&gt;</code> tag needs to go and b) it's easier
+                than giving you instructions to put one tag in one spot and the
+                other tag in another spot. It also makes things easier if we
+                ever change our embed tags and you need to update them.
+                Basically, we wanted to keep getting things set up with
+                {{ appname }} as simple as possible.
+            </p>
+            <p>
+                So, if you like, you can put {{ appname }}'s
+                <code>&lt;link&gt;</code> tag in the <code>&lt;head&gt;</code>
+                of your website, and its <code>&lt;script&gt;</code> tag at the
+                bottom of your website and everything should work just fine.
+            </p>
+            <p>
+                The good news is that even if you don't do that, the JavaScript
+                {{ appname }} adds to your website is very short and doesn't
+                make any HTTP requests (unless you're looking at your website
+                through {{ appname }}'s' editor), so it shouldn't make much of a
+                difference in how long it takes your website to load.
+            </p>
+        </li>
+        <li>
+            <strong>Does {{ appname }} support Media Queries? What about Respond.js?</strong>
+            <p>
+                Why, yes.
+                {{ doc_link('respond-js', link_text='It does actually') }}.
+                Thanks for asking.
+            </p>
+        </li>
+        <li>
+            <strong>Isn't that the same logo as Notepad++?</strong>
+            <p>
+                Yes and no.
+            </p>
+            <p>
+                Is it the same super-awesome chameleon drawn by
+                <a href="http://www.bluebison.net/content/?p=786" target="_blank" rel="nofollow external">Hayes Roberts</a>? Yes. (he gave us permission to use it and
+                everything which was, and continues to be, awesome of him).
+            </p>
+            <p>
+                They're <span title="I mean...did you even look at them?">subtly
+                different</span> though. {{ appname }}'s version is on a
+                branch, while Notepad++'s is on a pencil.
+            </p>
+            <p>
+                And just to be clear, {{ appname }} doesn't have any affiliation
+                with Notepad++ other than {{ appname}}'s developers thinking
+                it's a great editor (with a cool mascot). :)
+            </p>
+        </li>
+    </ul>
+    <p>
+        Otherwise, return to the {{ doc_link('toc') }}.
+    </p>
+{% endblock %}

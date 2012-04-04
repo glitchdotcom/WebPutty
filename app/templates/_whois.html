@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}WHOIS/Reverse Lookup{% endblock %}
+
+{% block content_class %}whois{% endblock %}
+
+{% block content %}
+<div class="dlg-page">
+    <h1>WHOIS/Reverse Lookup:</h1>
+    <form method="GET">
+        <p>
+            <label for="key" title="Page or style database key or numeric id">By database key...</label>
+            <input id="key" name="key" type="text" value="" />
+        </p>
+        <p>
+            <label for="email" title="User email address">By user email...</label>
+            <input id="email" name="email" type="text" value="" />
+        </p>
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    </form>
+    <p>
+        Other helpful entity-related <a href="http://code.google.com/appengine/docs/python/datastore/gqlreference.html" target="_blank">GQL</a>:
+        <pre>
+  SELECT * FROM Style WHERE __key__ = KEY('string_based_key_goes_here')
+  SELECT * FROM Style WHERE __key__ = KEY('Style', numeric_id_goes_here)
+  SELECT * FROM Site WHERE owner = USER('email_address_goes_here')</pre>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+        <tr>
+            <td>Site name</td>
+            <td>{{ datastore_url(site.key(), site.name) }}</td>
+        </tr>
+        <tr>
+            <td>Site owner</td>
+            <td>{{ site.owner.email() }}</td>
+        </tr>
+        <tr>
+            <td>Site Admins</td>
+            <td>
+                {% for user in site.admins %}
+                    {% if not loop.first %}, {% endif %}{{ user.email() }}
+                {% endfor %}
+                </td>
+        </tr>
+        <tr>
+            <td>Site Users</td>
+            <td>
+                {% for user in site.users %}
+                    {% if not loop.first %}, {% endif %}{{ user.email() }}
+                {% endfor %}
+                </td>
+        </tr>

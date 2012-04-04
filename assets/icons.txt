@@ -1,0 +1,10 @@
+favicon: http://www.bluebison.net/content/?p=786 cc by nc sa
+columns layout: http://findicons.com/icon/163947/application_tile_horizontal cc by
+rows layout: http://findicons.com/icon/164347/application_tile_vertical cc by
+small lock/unlock based on: http://findicons.com/icon/454522/lock?id=454522 cc by
+large lock: http://findicons.com/icon/177375/lock cc by-nd
+newspaper: http://findicons.com/icon/78417/news freeware
+refresh: http://findicons.com/icon/117867/arrow_circle cc by
+edit gears: http://findicons.com/icon/66035/settings freeware
+magnifying glass: http://findicons.com/icon/168018/magnify?id=278974 freeware
+exclamation: fugue icon pack

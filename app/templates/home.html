@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}{{ appname }}: Simple, fast, and powerful CSS editing and hosting.{% endtrans %}{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{{ appname }} is a simple CSS editing and hosting service. {{ appname }} gives you a syntax-highlighting CSS editor you can use from anywhere, the power of SCSS and Compass, a side-by-side preview pane, and instant publishing with minification, compression, and automatic cache control.">
+<meta name="keywords" content="webputty, fog creek, css editor, css hosting, sass, scss, less, compass, live preview, web putty, stylesheet hosting">
+{% endblock %}
+
+{% block content_class %}home{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+    <h1>{{ appname }}</h1>
+
+    <a id="fc" href="http://www.fogcreek.com?fccmp=webputty" target="_blank" title="{% trans %}To the mothership!{% endtrans %}">
+      <p>{% trans %}Brought to you by{% endtrans %}</p>
+      <img alt="Fog Creek Software" height="30" src="http://www.fogcreek.com/images/fogcreek/fog_creek_logo.png">
+    </a>
+
+    <div id="pitch" class="clearfix">
+        <div id="pitch-text">
+            <h2>{% trans %}{{ appname }} is a simple CSS editing and hosting service.{% endtrans %}</h2>
+            <p>
+                {% trans %}
+                {{ appname }} gives you a syntax-highlighting CSS editor you can
+                use from anywhere, the power of SCSS and Compass, a side-by-side
+                preview pane, and instant publishing with minification,
+                compression, and automatic cache control.
+                {% endtrans %}
+            </p>
+            <p>
+                {% trans %}
+                Get started with just a pair of tags in your website's
+                template and {{ appname }} will host and serve your published
+                CSS minified and gzipped for super speed.
+                <a href="http://blog.fogcreek.com/webputty-css-editing-goes-boink/?fccmp=webputty" target="_blank">Read more about why we built WebPutty</a>.
+                {% endtrans %}
+            </p>
+            <div class="start-now">
+                <a class="start-now-button" href="{{ users.create_login_url(url_for('index')) }}" title="{% trans %}You'll thank yourself later{% endtrans %}">{% trans %}Start Now{% endtrans %}</a>
+            </div>
+        </div>
+        <div id="video-wrap">
+            <a href="http://www.youtube.com/watch?v=FNaN789JsUc" class="youtube-placeholder" title="{% trans %}Click to watch a quick overview video of how to get started using {{ appname }}{% endtrans %}">
+                <img src="/static/img/video-placeholder.png" alt="{% trans %}Overview video of how to get starting using {{ appname }}{% endtrans %}" width="530" height="330" />
+            </a>
+        </div>
+    </div>
+
+    <div id="features" class="clearfix">
+        <h2>Features</h2>
+        <div class="half left first">
+            <a href="/static/img/webputty_selector_highlight.png" target="_blank" title="{% trans %}{{ appname }} editor and CSS selector highlighting in preview pane{% endtrans %}">
+                <img src="/static/img/webputty_selector_highlight.png" alt="{% trans %}Screenshot showing {{ appname }}'s editor and CSS selector highlighting in the preview pane{% endtrans %}" class="left" width="430" height="250" />
+            </a>
+            <h3>{% trans %}Editing with Live Preview and SCSS{% endtrans %}</h3>
+            <p>
+                {% trans %}
+                With {{ appname }}, you get an in-browser, feature-rich,
+                syntax-highlighting CSS editor. You can see your changes
+                instantly with the side-by-side preview pane, so there's
+                no need for the traditional back-and-forth between your editor
+                and refreshing a browser to see your changes. The editor
+                <em>is</em> your browser...and the preview's built-in!
+                Best of all, the editor and the preview pane work together, so
+                that when you click on a CSS selector, all the elements
+                matching that selector are instantly highlighted in the
+                preview pane.
+                {% endtrans %}
+            </p>
+            <p>
+                {% trans %}
+                {{ appname }} also allows you to take advantage of
+                <a href="http://sass-lang.com/" target="_blank">SCSS</a> and
+                <a href="http://compass-style.org/" target="_blank">Compass</a>.
+                SCSS gives you expanded functionality and ease-of-use features
+                like nested selectors, variables, and mixins, while Compass
+                makes CSS3 features like box-shadow, border-radius, gradients,
+                transforms, and transitions easier to implement by handling all
+                the browser-specific prefixes for you. Hallelujah!
+                {% endtrans %}
+            </p>
+        </div>
+        <div class="half right last">
+            <img src="/static/img/webputty_publish.png" alt="{% trans %}Screenshot of one-click stylesheet publishing in {{ appname }}{% endtrans %}" title="{% trans %}Publish your stylesheets with the click of a button{% endtrans %}" class="right" width="430" height="250" />
+            <h3>{% trans %}Easy Setup, Publishing and Hosting{% endtrans %}</h3>
+            <p>
+                {% trans %}
+                Setting up {{ appname }} on your website is as easy as adding
+                two teeny-tiny tags (a link tag and a script tag) to the end
+                of your site's <code>&lt;head&gt;</code> element. After that,
+                you can publish updated styles with the click of a button, and
+                they'll be visible to your website's visitors instantly. No
+                pushing to a repository, updating a remote file system, or
+                restarting your web app required. Just edit, preview, publish,
+                and move on. Plus, we serve your CSS minified and gzipped for
+                super speed, so there's no need for you to setup, fine tune,
+                or maintain your own media server.
+                {% endtrans %}
+            </p>
+            <p>
+                {% trans %}
+                Don't like the idea of having somebody else serving up your
+                CSS? You can always export your {{ appname }} stylesheets from
+                the editor with the click of a button. You get all the ease and
+                simplicity of in-browser editing, live preview, SCSS, and
+                Compass, with the option to continue hosting it yourself if you
+                want to.
+                {% endtrans %}
+            </p>
+        </div>
+    </div>
+    <div class="start-now bottom-start clearfix">
+        <a class="start-now-button" href="{{ users.create_login_url(url_for('index')) }}" title="{% trans %}You'll thank yourself later{% endtrans %}">{% trans %}Start Now{% endtrans %}</a>
+    </div>
+</div>
+{% endblock %}

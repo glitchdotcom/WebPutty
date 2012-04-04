@@ -1,0 +1,1187 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2011-10-13 11:44-0400\n"
+"PO-Revision-Date: 2011-10-05 09:46+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: app/extensions.py:41 app/templates/docs/docbase.html:3
+msgid "Documentation"
+msgstr "Documentation"
+
+#: app/templates/base.html:16 app/templates/index.html:3
+msgid "Your Sites &amp; Styles"
+msgstr "Vos sites &amp; styles"
+
+#: app/templates/base.html:23 app/templates/base.html:28
+msgid "We'd love to hear from you. No, seriously!"
+msgstr "Nous aimerions recevoir de vos nouvelles. Non, sérieusement !"
+
+#: app/templates/base.html:23 app/templates/base.html:28
+msgid "Feedback"
+msgstr "Commentaires"
+
+#: app/templates/base.html:26
+msgid "Peace out"
+msgstr "Au revoir!"
+
+#: app/templates/base.html:26
+msgid "Logout"
+msgstr "Déconnecter"
+
+#: app/templates/base.html:30
+msgid "Let's rock this thing"
+msgstr "Chamboulez tout"
+
+#: app/templates/base.html:30
+msgid "Login"
+msgstr "Connexion"
+
+#: app/templates/base.html:39 app/templates/home.html:22
+msgid "To the mothership!"
+msgstr "À notre mère à tous!"
+
+#: app/templates/base.html:40
+msgid "Givin' it where it's due"
+msgstr "Procéder aux modifs nécessaires"
+
+#: app/templates/base.html:40 app/templates/credits.html:3
+#: app/templates/credits.html:9
+msgid "Credits"
+msgstr "Remerciements"
+
+#: app/templates/base.html:41
+msgid ""
+"We don't always write release notes, but when we do, we write them here. "
+"Stay current my friends."
+msgstr ""
+"Nous ne rédigeons pas toujours des notes de mise à jour, mais lorsque "
+"nous le faisons, nous les publions ici. Tenez-vous au courant mes amis."
+
+#: app/templates/credits.html:14
+#, python-format
+msgid ""
+"Some of the icons, images, and sample HTML &amp; CSS used by %(appname)s "
+"are licensed under the following terms:"
+msgstr ""
+"Certaines icônes et images ainsi que des échantillons de code HTML &amp; "
+"CSS utilisés par %(appname)s sont autorisés en vertu des termes suivants "
+":"
+
+#: app/templates/credits.html:45
+msgid "Adapted HTML4 &amp; HTML5 blog examples"
+msgstr ""
+
+#: app/templates/credits.html:59
+#, python-format
+msgid "(with explicit permission for use in %(appname)s)"
+msgstr ""
+
+#: app/templates/edit_locale.html:3 app/templates/locale_editor.html:1
+msgid "Set Your Locale"
+msgstr "Définissez votre région"
+
+#: app/templates/edit_page.html:3 app/templates/page_editor.html:1
+msgid "Edit Stylesheet"
+msgstr "Éditer une Feuille de Style"
+
+#: app/templates/edit_site.html:3 app/templates/site_editor.html:1
+msgid "Edit Site"
+msgstr "Éditer un Site"
+
+#: app/templates/edit_siteusers.html:3
+#, python-format
+msgid "Configure %(site_name)s"
+msgstr "Configurer %(site_name)s"
+
+#: app/templates/editor.html:43 app/templates/index.html:18
+msgid "Help"
+msgstr "Aide"
+
+#: app/templates/editor.html:43
+msgid "How do all these doodads work?"
+msgstr "Comment fonctionnent tous ces trucs ?"
+
+#: app/templates/editor.html:60
+msgid "Force a refresh of the current preview page"
+msgstr "Forcer un rafraîchissement de la page d'aperçu actuelle"
+
+#: app/templates/editor.html:60
+msgid "Refresh"
+msgstr "Rafraîchir"
+
+#: app/templates/editor.html:61
+msgid "Open this URL in a new tab"
+msgstr "Ouvrir cet URL dans un nouvel onglet"
+
+#: app/templates/editor.html:61
+msgid "Open in new tab"
+msgstr "Ouvrir dans un nouvel onglet"
+
+#: app/templates/editor.html:65
+msgid "Edit this stylesheet's name and URL"
+msgstr "Modifier le nom et l'URL de cette feuille de style"
+
+#: app/templates/editor.html:65
+msgid "Configure"
+msgstr "Configurer"
+
+#: app/templates/editor.html:67
+msgid "View the tags for embedding this stylesheet in your website"
+msgstr ""
+"Voir les balises pour insérer cette feuille de style dans votre site "
+"Internet"
+
+#: app/templates/editor.html:67
+msgid "Embed"
+msgstr "Insérer"
+
+#: app/templates/editor.html:68
+msgid "Add Firebug Lite to the preview pane"
+msgstr "Ajouter Firebug Lite au volet de prévisualisation"
+
+#: app/templates/editor.html:68
+msgid "Firebug"
+msgstr "Firebug"
+
+#: app/templates/editor.html:73
+msgid "Preview"
+msgstr "Aperçu"
+
+#: app/templates/editor.html:74
+msgid "Published"
+msgstr "Publié"
+
+#: app/templates/editor.html:76
+#, python-format
+msgid "Last modified <span id=\"style-dt-last-edit\">%(timestamp)s</span>"
+msgstr "Dernière modification <span id=\"style-dt-last-edit\">%(timestamp)s</span>"
+
+#: app/templates/editor.html:88
+msgid "Vertical Split Panes"
+msgstr "Fenêtre scindées verticalement"
+
+#: app/templates/editor.html:89
+msgid "Horizontal Split Panes"
+msgstr "Fenêtres scindées horizontalement"
+
+#: app/templates/editor.html:91
+msgid "Publish"
+msgstr "Publier"
+
+#: app/templates/editor.html:92
+msgid "Export an indented, plain-CSS copy of the current stylesheet"
+msgstr ""
+"Exportez une copie CSS simple et fragmentée de la feuille de style "
+"actuelle"
+
+#: app/templates/editor.html:92
+msgid "Export"
+msgstr "Exporter"
+
+#: app/templates/editor.html:99 app/templates/editor.html:108
+msgid "Oh no!"
+msgstr "Zut!"
+
+#: app/templates/editor.html:100
+msgid "It looks like you've got JavaScript turned off."
+msgstr "Il semblerait que votre JavaScript soit désactivé."
+
+#: app/templates/editor.html:101
+#, python-format
+msgid "%(appname)s needs JavaScript in order to do its magic."
+msgstr "%(appname)s a besoin de JavaScript pour que sa magie opère."
+
+#: app/templates/editor.html:102
+msgid "Help us bring back the magic (by enabling JavaScript)!"
+msgstr "Aidez-nous à restaurer la magie (en activant JavaScript) !"
+
+#: app/templates/editor.html:103
+#, python-format
+msgid ""
+"9 out of 10 dead %(appname)s chameleons can be revived by enabling "
+"JavaScript"
+msgstr ""
+"9 caméléons %(appname)s morts sur 10 peuvent être ramenés à la vie en "
+"activant JavaScript"
+
+#: app/templates/editor.html:109
+msgid "We couldn't find the necessary tags for this stylesheet in this page."
+msgstr ""
+"Les balises nécessaires pour cette feuille de style n'ont pas été "
+"insérées dans cette page."
+
+#: app/templates/editor.html:110
+msgid ""
+"Just getting started? <a id=\"btn-fix-it\" href=\"#\" title=\"Let's wire "
+"this thing up!\">Click here</a> and we'll help you get things wired up."
+msgstr ""
+
+#: app/templates/editor.html:111
+#, python-format
+msgid ""
+"Little-known fact: a %(appname)s chameleon's diet consists almost "
+"entirely of embedded tags"
+msgstr ""
+"Un fait peu connu : un régime de caméléon %(appname)s consiste presque "
+"entièrement en balises insérées"
+
+#: app/templates/editor.html:112
+msgid ""
+"Already embedded the necessary tags? Please double-check that "
+"<strong>both</strong> the <code>&lt;link&gt;</code> and "
+"<code>&lt;script&gt;</code> tags show up when you navigate to your "
+"website and view the source of the page."
+msgstr ""
+"Veuillez vous assurer que les balises <code>&lt;link&gt;</code> et "
+"<code>&lt;script&gt;</code> apparaissent lorsque vous naviguez sur votre "
+"site Internet et visualisez la source de la page."
+
+#: app/templates/editor.html:113
+#, python-format
+msgid ""
+"If everything looks ok there, or you've otherwise run into a problem, "
+"please contact us via <a href=\"%(feedback_url)s\">our feedback form</a>."
+msgstr ""
+"Si tout est en ordre ou si jamais vous rencontrez un problème, veuillez \n"
+"nous contacter via notre <a href=\"%(feedback_url)s\">formulaire de "
+"contact</a>."
+
+#: app/templates/editor.html:114
+msgid ""
+"I know what I'm doing (for serious), please let me edit my stylesheet "
+"anyway."
+msgstr ""
+
+#: app/templates/editor.html:118
+msgid "Locked by another user"
+msgstr "Bloqué par un autre utilisateur"
+
+#: app/templates/editor.html:119
+#, python-format
+msgid ""
+"%(appname)s detected some problems with your (S)CSS. Click here to find "
+"out more..."
+msgstr ""
+"%(appname)s a détecté certains problèmes avec votre (S)CSS. Cliquez ici "
+"pour plus de précisions..."
+
+#: app/templates/editor.html:119
+msgid "Found stylesheet errors"
+msgstr "Trouver les erreurs de feuille de style"
+
+#: app/templates/editor.html:125
+msgid ""
+"The necessary tags for this stylesheet have not been embedded in this "
+"page."
+msgstr ""
+"Les balises nécessaires pour cette feuille de style n'ont pas été "
+"insérées dans cette page."
+
+#: app/templates/editor.html:126
+msgid ""
+"Copy the code below and paste it right before the "
+"<code>&lt;/head&gt;</code> tag in this page."
+msgstr ""
+"Copiez le code ci-dessous et collez-le juste avant la balise "
+"<code>&lt;/head&gt;</code> sur cette page."
+
+#: app/templates/editor.html:127
+msgid "Once you've embedded these tags, refresh this page to get started."
+msgstr ""
+"Une fois que vous avez inséré ces balises, rafraîchissez cette page et "
+"commencez."
+
+#: app/templates/editor.html:136
+#, python-format
+msgid ""
+"\n"
+"        It looks like some of the embedded tags %(appname)s needs are "
+"missing from\n"
+"        your website. The <code>&lt;script&gt;</code> tag appears to be "
+"there, but it\n"
+"        wasn't able to find the <code>&lt;link&gt;</code> tag that "
+"actually pulls in\n"
+"        your %(appname)s styles.\n"
+"        "
+msgstr ""
+
+#: app/templates/editor.html:144
+msgid ""
+"\n"
+"        Please make sure both the <code>&lt;link&gt;</code> and "
+"<code>&lt;script&gt;</code>\n"
+"        tags show up when you navigate to your website and view the "
+"source of the page.\n"
+"        "
+msgstr ""
+"Veuillez vous assurer que les balises <code>&lt;link&gt;</code> et "
+"<code>&lt;script&gt;</code> apparaissent lorsque vous naviguez sur votre "
+"site Internet et visualisez la source de la page."
+
+#: app/templates/editor.html:150
+#, python-format
+msgid ""
+"\n"
+"        If everything there looks ok, or you've otherwise run into a "
+"problem, please\n"
+"        contact us via our <a href=\"%(feedback_url)s\">feedback "
+"form</a>.\n"
+"        "
+msgstr ""
+"Si tout est en ordre ou si jamais vous rencontrez un problème, veuillez \n"
+"nous contacter via notre <a href=\"%(feedback_url)s\">formulaire de "
+"contact</a>."
+
+#: app/templates/feedback.html:3
+#, python-format
+msgid "%(appname)s Feedback"
+msgstr "%(appname)s Commentaires"
+
+#: app/templates/feedback.html:9
+msgid "Tell us what you think!"
+msgstr "Dites-nous ce que vous pensez !"
+
+#: app/templates/feedback.html:10
+msgid ""
+"Fill out the form below or email us at <a "
+"href=\"mailto:webputty@fogcreek.com\">webputty@fogcreek.com</a>."
+msgstr ""
+"Complétez le formulaire ci-dessous ou envoyez-nous un e-mail à <a "
+"href=\"mailto:webputty@fogcreek.com\">webputty@fogcreek.com</a>."
+
+#: app/templates/feedback.html:16
+msgid "Fields marked with an asterisk (*) are required."
+msgstr "Les champs marqués d'un astérisque (*) sont obligatoires."
+
+#: app/templates/feedback.html:17
+msgid "Send it in!"
+msgstr "Envoyez-le !"
+
+#: app/templates/home.html:3
+#, python-format
+msgid "%(appname)s: Simple, fast, and powerful CSS editing and hosting."
+msgstr "%(appname)s : Édition et hébergement simples, rapides et puissants de CSS."
+
+#: app/templates/home.html:23
+msgid "Brought to you by"
+msgstr "Présenté par"
+
+#: app/templates/home.html:29
+#, python-format
+msgid "%(appname)s is a simple CSS editing and hosting service."
+msgstr "%(appname)s est un simple service d'édition et d'hébergement de CSS."
+
+#: app/templates/home.html:31
+#, python-format
+msgid ""
+"\n"
+"                %(appname)s gives you a syntax-highlighting CSS editor "
+"you can\n"
+"                use from anywhere, the power of SCSS and Compass, a side-"
+"by-side\n"
+"                preview pane, and instant publishing with minification,\n"
+"                compression, and automatic cache control.\n"
+"                "
+msgstr ""
+"%(appname)s vous offre un éditeur CSS surligneur syntaxe que vous pouvez "
+"utiliser\n"
+"n'importe où, la puissance de SCSS et Compass, une fenêtre de\n"
+"prévisualisation adjacente et une publication instantanée avec réduction,"
+"\n"
+"compression, et contrôle cache automatique."
+
+#: app/templates/home.html:39
+#, python-format
+msgid ""
+"\n"
+"                Get started with just a pair of tags in your website's\n"
+"                template and %(appname)s will host and serve your "
+"published\n"
+"                CSS minified and gzipped for super speed.\n"
+"                <a href=\"http://blog.fogcreek.com/webputty-css-editing-"
+"goes-boink/?fccmp=webputty\" target=\"_blank\">Read more about why we "
+"built WebPutty</a>.\n"
+"                "
+msgstr ""
+"Commencez avec juste quelques tags sur le\n"
+"template de votre site et %(appname)s hébergera votre\n"
+"CSS publié et gzippé pour un maximum de rapidité.\n"
+"<a href=\"http://blog.fogcreek.com/webputty-css-editing-goes-"
+"boink/?fccmp=webputty\" target=\"_blank\">Regardez ce que nous avons créé"
+" WebPutty</a>."
+
+#: app/templates/home.html:47 app/templates/home.html:127
+msgid "You'll thank yourself later"
+msgstr "Vous vous en féliciterez plus tard"
+
+#: app/templates/home.html:47 app/templates/home.html:127
+msgid "Start Now"
+msgstr "Commencer Maintenant"
+
+#: app/templates/home.html:49
+msgid ""
+"\n"
+"                    Requires a Google account.<br />\n"
+"                    Free for <span title=\"That's you!\">early "
+"adopters!</span>\n"
+"                    "
+msgstr ""
+"Requiert un compte Google. <br />\n"
+"Gratuit pour les <span title=\"C'est vous!\">premiers utilisateurs "
+"!</span>"
+
+#: app/templates/home.html:57
+#, python-format
+msgid ""
+"Click to watch a quick overview video of how to get started using "
+"%(appname)s"
+msgstr ""
+"Cliquer pour visionner une vidéo de présentation sur la manière de "
+"commencer à utiliser %(appname)s"
+
+#: app/templates/home.html:58
+#, python-format
+msgid "Overview video of how to get starting using %(appname)s"
+msgstr "Vidéo de présentation sur la manière de commencer à utiliser %(appname)s"
+
+#: app/templates/home.html:66
+#, python-format
+msgid "%(appname)s editor and CSS selector highlighting in preview pane"
+msgstr "%(appname)s éditeur et surligneur CSS dans fenêtre de prévisualisation"
+
+#: app/templates/home.html:67
+#, python-format
+msgid ""
+"Screenshot showing %(appname)s's editor and CSS selector highlighting in "
+"the preview pane"
+msgstr ""
+"Copie d'écran montrant l'éditeur et le surligneur CSS de %(appname)s dans"
+" la fenêtre de prévisualisation"
+
+#: app/templates/home.html:69
+msgid "Editing with Live Preview and SCSS"
+msgstr "Éditer avec Prévisualisation en direct et SCSS"
+
+#: app/templates/home.html:71
+#, python-format
+msgid ""
+"\n"
+"                With %(appname)s, you get an in-browser, feature-rich,\n"
+"                syntax-highlighting CSS editor. You can see your changes\n"
+"                instantly with the side-by-side preview pane, so there's\n"
+"                no need for the traditional back-and-forth between your "
+"editor\n"
+"                and refreshing a browser to see your changes. The editor\n"
+"                <em>is</em> your browser...and the preview's built-in!\n"
+"                Best of all, the editor and the preview pane work "
+"together, so\n"
+"                that when you click on a CSS selector, all the elements\n"
+"                matching that selector are instantly highlighted in the\n"
+"                preview pane.\n"
+"                "
+msgstr ""
+"Avec %(appname)s, vous avez un éditeur intégré au navigateur, avec des "
+"fonctionnalités multiples,\n"
+"et un surligneur de syntaxe. Vous pouvez voir les modifications "
+"instantanément\n"
+"avec la fenêtre de prévisualisation adjacente, donc plus\n"
+"besoin de faire des allers-retours entre votre éditeur\n"
+"et le navigateur rafraîchi pour voir les modifications. L'éditeur\n"
+"<em>est</em> votre navigateur...et la prévisualisation est intégrée !\n"
+"Le plus fort, c'est que l'éditeur et la fenêtre de prévisualisation "
+"fonctionnent ensemble, ainsi\n"
+"lorsque vous cliquez sur un sélecteur CSS, tous les éléments assortis \n"
+"à ce sélecteur sont instantanément surlignés dans la fenêtre de "
+"prévisualisation."
+
+#: app/templates/home.html:85
+#, python-format
+msgid ""
+"\n"
+"                %(appname)s also allows you to take advantage of\n"
+"                <a href=\"http://sass-lang.com/\" "
+"target=\"_blank\">SCSS</a> and\n"
+"                <a href=\"http://compass-style.org/\" "
+"target=\"_blank\">Compass</a>.\n"
+"                SCSS gives you expanded functionality and ease-of-use "
+"features\n"
+"                like nested selectors, variables, and mixins, while "
+"Compass\n"
+"                makes CSS3 features like box-shadow, border-radius, "
+"gradients,\n"
+"                transforms, and transitions easier to implement by "
+"handling all\n"
+"                the browser-specific prefixes for you. Hallelujah!\n"
+"                "
+msgstr ""
+"%(appname)s vous permet aussi de tirer profit de\n"
+"<a href=\"http://sass-lang.com/\" target=\"_blank\">SCSS</a> et de\n"
+"<a href=\"http://compass-style.org/\" target=\"_blank\">Compass</a>.\n"
+"SCSS vous offre une fonctionnalité avancée et des fonctions conviviales\n"
+"comme des sélecteurs imbriqués, des variables, des mixins tandis que "
+"Compass\n"
+"rend les fonctionnalités CSS3 comme les ombrages, coins arrondis, "
+"gradients, \n"
+"transformations et transitions plus faciles à implanter en gérant pour "
+"vous tous\n"
+"les préfixes spécifiques au navigateur. Alléluia !"
+
+#: app/templates/home.html:98
+#, python-format
+msgid "Screenshot of one-click stylesheet publishing in %(appname)s"
+msgstr "Capture d'écran d'une publication de feuille de style dans %(appname)s"
+
+#: app/templates/home.html:98
+msgid "Publish your stylesheets with the click of a button"
+msgstr "Publiez vos feuilles de style en un clic"
+
+#: app/templates/home.html:99
+msgid "Easy Setup, Publishing and Hosting"
+msgstr "Configuration, publication et hébergement faciles"
+
+#: app/templates/home.html:101
+#, python-format
+msgid ""
+"\n"
+"                Setting up %(appname)s on your website is as easy as "
+"adding\n"
+"                two teeny-tiny tags (a link tag and a script tag) to the "
+"end\n"
+"                of your site's <code>&lt;head&gt;</code> element. After "
+"that,\n"
+"                you can publish updated styles with the click of a "
+"button, and\n"
+"                they'll be visible to your website's visitors instantly. "
+"No\n"
+"                pushing to a repository, updating a remote file system, "
+"or\n"
+"                restarting your web app required. Just edit, preview, "
+"publish,\n"
+"                and move on. Plus, we serve your CSS minified and gzipped"
+" for\n"
+"                super speed, so there's no need for you to setup, fine "
+"tune,\n"
+"                or maintain your own media server.\n"
+"                "
+msgstr ""
+"Installer %(appname)s sur votre site est aussi simple qu'ajouter\n"
+"deux minuscules tags (un tag lien et un tag script) à la fin \n"
+"de l' <code>intitulé</code> de votre site. Vous pouvez ensuite\n"
+"publier des styles actualisés en cliquant sur un bouton, et ils seront "
+"visibles\n"
+"instantanément par les visiteurs de votre site Internet.\n"
+"Pas besoin de dépositaire, de mise à jour d'un système de fichiers à "
+"distance ou\n"
+"de redémarrage de votre appli Web. Il vous suffit d'éditer, de "
+"prévisualiser, de publier\n"
+"et de continuer. En plus, nous vous donnons votre CSS réduit et gzippé "
+"pour\n"
+"plus de rapidité, donc pas besoin d’installer, de régler ou d'entretenir "
+"votre propre serveur média."
+
+#: app/templates/home.html:115
+#, python-format
+msgid ""
+"\n"
+"                Don't like the idea of having somebody else serving up "
+"your\n"
+"                CSS? You can always export your %(appname)s stylesheets "
+"from\n"
+"                the editor with the click of a button. You get all the "
+"ease and\n"
+"                simplicity of in-browser editing, live preview, SCSS, and"
+"\n"
+"                Compass, with the option to continue hosting it yourself "
+"if you\n"
+"                want to.\n"
+"                "
+msgstr ""
+"Vous n'aimez pas l'idée que quelqu'un d'autre se serve de vos CSS ? Vous "
+"pouvez toujours exporter vos feuilles de style %(appname)s depuis "
+"l'éditeur en un simple clic. Vous disposez du confort et de la simplicité"
+" du modificateur de navigateur, de l'aperçu en temps réel, de SCSS et de "
+"Compass, avec la possibilité de continuer à les héberger vous-même si "
+"vous le souhaitez."
+
+#: app/templates/home.html:129
+msgid ""
+"\n"
+"            Requires a Google account.<br />\n"
+"            Free for <span title=\"That's you!\">early adopters!</span>\n"
+"        "
+msgstr ""
+"Requiert un compte Google. <br />\n"
+"Gratuit pour les <span title=\"C'est vous!\">premiers utilisateurs "
+"!</span>"
+
+#: app/templates/home.html:136
+msgid "The word on the street..."
+msgstr "Les gens en parlent..."
+
+#: app/templates/home.html:138
+#, python-format
+msgid ""
+"%(appname)s: a CSS editing tool with real-time preview, SASS, and Compass"
+" support. Handles hosting too!"
+msgstr ""
+"%(appname)s : un outil d'édition CSS avec une prévisualisation en temps "
+"réel, SASS et support Compass. Et il héberge aussi !"
+
+#: app/templates/home.html:138
+msgid "Tweet"
+msgstr "Tweet"
+
+#: app/templates/home.html:139
+msgid "Submit to reddit"
+msgstr "Envoyer à reddit"
+
+#: app/templates/home.html:140
+msgid "Submit to Hacker News"
+msgstr "Envoyer à Hacker News"
+
+#: app/templates/home.html:150
+msgid "Previous Tweet"
+msgstr "Tweet Précédent"
+
+#: app/templates/home.html:151
+msgid "Next Tweet"
+msgstr "Tweet Suivant"
+
+#: app/templates/index.html:18
+msgid "Take the 10&cent; tour"
+msgstr "Faites le tour 10&cent;"
+
+#: app/templates/index.html:32
+msgid "Edit this site's name"
+msgstr "Modifier le nom de ce site"
+
+#: app/templates/index.html:32
+msgid "Edit site settings"
+msgstr "Modifier les paramètres du site"
+
+#: app/templates/index.html:33
+msgid "Manage Users"
+msgstr "Gérer les utilisateurs"
+
+#: app/templates/index.html:33
+msgid "Some shall pass!"
+msgstr "Forcément, ça fera mouche !"
+
+#: app/templates/index.html:36
+msgid "Remove yourself from this site"
+msgstr "Retirez-vous de ce site"
+
+#: app/templates/index.html:39
+msgid "Delete Site"
+msgstr "Supprimer un site"
+
+#: app/templates/index.html:47
+msgid "Click to edit this stylesheet (i.e., go to where the magic happens)"
+msgstr ""
+"Cliquer pour éditer cette feuille de style (c.à.d. se rendre où la magie "
+"opère)"
+
+#: app/templates/index.html:54
+msgid "Click to delete this style"
+msgstr "Cliquer pour supprimer ce style"
+
+#: app/templates/index.html:60
+msgid "Click to start mixin' some new stylez"
+msgstr "Cliquez pour commencer à mélanger certains nouveaux styles"
+
+#: app/templates/index.html:61
+msgid "New<br />Style"
+msgstr "Nouveau<br />Style"
+
+#: app/templates/index.html:73
+msgid "Click to get crackin' on something new"
+msgstr "Cliquez pour tester un truc nouveau"
+
+#: app/templates/index.html:74
+msgid "New<br />Site"
+msgstr "Nouveau<br />Site"
+
+#: app/templates/invitation_expired.html:3
+#: app/templates/invitation_expired.html:7
+msgid "Invitation Expired"
+msgstr "L'invitation a expiré"
+
+#: app/templates/invitation_expired.html:9
+msgid "Ruh roh. The invitation link you followed seems to have expired. :("
+msgstr "Oups. Le lien d'invitation que vous avez suivi semble avoir expiré. :("
+
+#: app/templates/invitation_expired.html:12
+#, python-format
+msgid ""
+"You can still head over to the <a href=\"%(index_url)s\" title=\"Your "
+"Sites &amp; Styles\">home page</a> to see the list of sites that you "
+"<i>are</i> a member of."
+msgstr ""
+"Vous pouvez toujours vous rendre sur la  <a href=\"%(index_url)s\" "
+"title=\"Your Sites &amp; Styles\">page d'accueil</a> pour voir la liste "
+"des sites dont vous <i>êtes</i> membre."
+
+#: app/templates/invite_email.html:8
+msgid "beta"
+msgstr "bêta"
+
+#: app/templates/invite_email.html:15
+#, python-format
+msgid ""
+"\n"
+"                  <b>%(email)s</b> has invited you to work on a website "
+"with them in %(appname)s.\n"
+"                  "
+msgstr ""
+"<b>%(email)s</b> vous a invité à travailler sur un site Internet avec lui"
+" avec %(appname)s."
+
+#: app/templates/invite_email.html:19
+#, python-format
+msgid "Click here to start working on &quot;%(site_name)s&quot;"
+msgstr "Commencer à travailler sur &quot;%(site_name)s&quot;"
+
+#: app/templates/invite_email.html:20
+#, python-format
+msgid "What's %(appname)s?"
+msgstr "Qu'est-ce que %(appname)s ?"
+
+#: app/templates/invite_email.html:22
+#, python-format
+msgid ""
+"\n"
+"                %(appname)s is like a transmogrifier for your website. It"
+" lets you edit your website's CSS in one pane and see a live preview of "
+"how those changes will look in another, all without inflicting any half-"
+"baked designs on your website's visitors. Once you're happy with your new"
+" design though, you're only a button click away from publishing those "
+"styles and making them live on your website. <a "
+"href=\"http://blog.fogcreek.com/webputty-css-editing-goes-boink/\">Read "
+"more...</a>\n"
+"                "
+msgstr ""
+"%(appname)s est comme un métamorphoseur de site Internet. Il vous permet "
+"d'éditer le CSS de votre site dans une fenêtre et de prévisualiser ces "
+"changements dans une autre, tout ça sans infliger à vos visiteurs un "
+"design de site à moitié fini. Une fois satisfait de votre nouveau design,"
+" il vous suffit d'appuyer sur un bouton pour publier ces styles et leur "
+"donner vie sur votre site Internet. <a href=\"http://blog.fogcreek.com"
+"/webputty-css-editing-goes-boink/\">En savoir plus...</a>"
+
+#: app/templates/invite_email.html:26
+msgid "Enjoy!"
+msgstr "Amusez-vous !"
+
+#: app/templates/invite_email.html:27
+#, python-format
+msgid "--The %(appname)s People"
+msgstr "-- Le peuple %(appname)s"
+
+#: app/templates/locale_editor.html:4
+msgid "Locale:"
+msgstr "Région :"
+
+#: app/templates/locale_editor.html:13
+msgid "Save"
+msgstr "Enregistrer"
+
+#: app/templates/new_page.html:3
+msgid "Create New Stylesheet"
+msgstr "Créer une nouvelle feuille de style"
+
+#: app/templates/new_site.html:3
+msgid "Create New Site"
+msgstr "Créer un nouveau site"
+
+#: app/templates/page_creator.html:5 app/templates/site_creator.html:5
+msgid "Create!"
+msgstr "Créer !"
+
+#: app/templates/page_editor.html:6 app/templates/site_editor.html:5
+msgid "Update!"
+msgstr "Mettre à jour !"
+
+#: app/templates/page_form.html:4
+#, python-format
+msgid "Site: %(site_name)s"
+msgstr "Site : %(site_name)s"
+
+#: app/templates/page_form_edit.html:2
+msgid "Additional preview URLs:"
+msgstr "URL d'aperçu supplémentaires :"
+
+#: app/templates/page_form_edit.html:7
+msgid "Click to edit"
+msgstr "Cliquer pour éditer"
+
+#: app/templates/page_form_edit.html:10
+msgid "Remove URL"
+msgstr "Supprimer une URL"
+
+#: app/templates/page_form_edit.html:15
+msgid "Add new URL"
+msgstr "Ajouter une nouvelle URL"
+
+#: app/templates/page_import.html:3
+msgid "Import Existing CSS"
+msgstr "Importer un CSS existant"
+
+#: app/templates/page_import.html:9
+msgid "Yes"
+msgstr "Oui"
+
+#: app/templates/page_import.html:10
+msgid "Cancel"
+msgstr "Annuler"
+
+#: app/templates/page_import.html:18
+msgid "Import CSS"
+msgstr "Importer un CSS"
+
+#: app/templates/page_import.html:19
+#, python-format
+msgid ""
+"Importing will add any of the existing CSS on your page (i.e., "
+"<code>&lt;link&gt;</code> and <code>&lt;style&gt;</code> tags) to the top"
+" of the preview (unpublished) version of your %(appname)s style."
+msgstr ""
+"L'importation ajoutera n'importe lequel des CSS existants sur votre page "
+"(c.-à-d., <code>&lt;link&gt;</code> et<code>&lt;style&gt;</code> tags) en"
+" haut de la version prévisualisée (non publiée) de votre style "
+"%(appname)s."
+
+#: app/templates/page_import.html:20
+#, python-format
+msgid ""
+"Are you sure you want to continue importing the CSS for "
+"<b>%(page_name)s</b> from <a href=\"%(page_url)s\" "
+"target=\"_blank\">%(page_url)s</a>?"
+msgstr ""
+"Êtes-vous sûr de vouloir continuer à importer le CSS vers "
+"<b>%(page_name)s</b> depuis <a href=\"%(page_url)s\" "
+"target=\"_blank\">%(page_url)s</a> ?"
+
+#: app/templates/page_import.html:23
+msgid "Just a sec..."
+msgstr "Un petit instant..."
+
+#: app/templates/page_import.html:24
+msgid ""
+"We are currently importing your existing CSS. This shouldn't take too "
+"long..."
+msgstr ""
+"Nous importons actuellement votre CSS existant. Ce processus ne devrait "
+"pas prendre trop de temps..."
+
+#: app/templates/page_import.html:25
+msgid "Chameleon on a branch"
+msgstr "Caméléon sur une branche"
+
+#: app/templates/page_import.html:52
+msgid "Re-import CSS?"
+msgstr "Réimporter un CSS ?"
+
+#: app/templates/page_import.html:53
+#, python-format
+msgid ""
+"You've already imported the CSS for <b>%(page_name)s</b> from <a "
+"href=\"%(page_url)s\" target=\"_blank\">%(page_url)s</a>."
+msgstr ""
+"Vous avez déjà importé le CSS vers <b>%(page_name)s</b> depuis <a "
+"href=\"%(page_url)s\" target=\"_blank\">%(page_url)s</a>."
+
+#: app/templates/page_import.html:54
+#, python-format
+msgid ""
+"Are you sure you want to continue with re-importing the CSS for "
+"<b>%(page_name)s</b>?"
+msgstr ""
+"Êtes-vous sûr de vouloir continuer à réimporter le CSS vers  "
+"<b>%(page_name)s</b> ?"
+
+#: app/templates/release_notes.html:3 app/templates/release_notes.html:9
+msgid "Release Notes"
+msgstr "Notes de mise à jour"
+
+#: app/templates/release_notes.html:14
+#, python-format
+msgid "What's shakin' with %(appname)s?"
+msgstr "Quoi de neuf avec %(appname)s ?"
+
+#: app/templates/release_notes.html:59
+#, python-format
+msgid ""
+"\n"
+"            Dying to know more? Read <a href=\"http://blog.fogcreek.com"
+"/webputty-css-editing-goes-boink/?fccmp=webputty\" target=\"_blank\" "
+"title=\"WebPutty: CSS editing goes &quot;boink&quot;\">about the "
+"launch</a> or how %(appname)s went <a href=\"http://hicks-wright.net/blog"
+"/lean-development-zero-to-launch-in-six-weeks/\" target=\"_blank\">from "
+"zero to launch in just six weeks</a>.\n"
+"            "
+msgstr ""
+"Vous mourez d'envie d'en savoir plus ? Lisez <a "
+"href=\"http://blog.fogcreek.com/webputty-css-editing-goes-"
+"boink/?fccmp=webputty\" target=\"_blank\" title=\"WebPutty: CSS editing "
+"goes &quot;boink&quot;\">à propos du lancement</a> ou comment %(appname)s"
+" a <a href=\"http://hicks-wright.net/blog/lean-development-zero-to-"
+"launch-in-six-weeks/\" target=\"_blank\">été lancé en seulement six "
+"semaines</a>."
+
+#: app/templates/release_notes_flair.html:2
+#, python-format
+msgid ""
+"ZOMG! A new version of %(appname)s was released! Check out what new "
+"awesome-saucery we added."
+msgstr ""
+
+#: app/templates/release_notes_flair.html:2
+msgid "New version!"
+msgstr "Nouvelle Version!"
+
+#: app/templates/site_creator.html:1
+msgid "Add a New Site"
+msgstr "Ajouter un nouveau site"
+
+#: app/templates/siteusers_editor.html:4
+#, python-format
+msgid "Users for \"%(site_name)s\""
+msgstr "Utilisateurs pour \"%(site_name)s\""
+
+#: app/templates/siteusers_editor.html:9
+msgid "Admins"
+msgstr "Administrateurs"
+
+#: app/templates/siteusers_editor.html:17
+msgid "Remove Admin"
+msgstr "Supprimer un administrateur"
+
+#: app/templates/siteusers_editor.html:25
+msgid "No admins (other than you)"
+msgstr "Pas d'administrateurs (autre que vous)"
+
+#: app/templates/siteusers_editor.html:30
+msgid "Editors"
+msgstr "Éditeurs"
+
+#: app/templates/siteusers_editor.html:38
+msgid "Remove"
+msgstr "Supprimer"
+
+#: app/templates/siteusers_editor.html:46
+msgid "No editors (other than you)"
+msgstr "Pas d'éditeurs (autre que vous)"
+
+#: app/templates/siteusers_editor.html:51
+msgid "Add a User"
+msgstr "Ajouter un Utilisateur"
+
+#: app/templates/siteusers_editor.html:63
+msgid "Invite"
+msgstr "Inviter"
+
+#: app/templates/tweets.html:4
+#, python-format
+msgid ""
+"\n"
+"            <b title=\"Yes...*you*!\">Hey, you!</b> Digging %(appname)s?\n"
+"            <br /><br />\n"
+"            If so, please help us spread the word about how amazingly "
+"fandabulous it is! Thanks!\n"
+"            "
+msgstr ""
+"<b title=\"oui...*toi *!\">Hey, toi !</b> Ça te plaît %(appname)s?\n"
+"<br /><br />\n"
+"Si c'est le cas, parles-en autour de toi et montre aux gens à quel point "
+"il est génial ! Merci !"
+
+#: app/templates/tweets.html:10
+msgid ""
+"WebPutty: a CSS editing tool with real-time preview, SASS, and Compass "
+"support. Handles hosting too!"
+msgstr ""
+"WebPutty : un outil d'édition CSS avec une prévisualisation en temps "
+"réel, SASS et un support Compass. Et il héberge aussi !"
+
+#: app/templates/tweets.html:10
+msgid "Help spread the word!"
+msgstr "Aidez à transmettre le message!"
+
+#: app/templates/tweets.html:15
+msgid "Consulting the interwebs..."
+msgstr "Consultez les réseaux..."
+
+#: app/templates/tweets.html:20
+msgid ""
+"\n"
+"            Read them all, did ya? Impressive!\n"
+"            <br /><br />\n"
+"            Still want more? Then check out <a "
+"href=\"https://twitter.com/#!/search/webputty\" target=\"_blank\">what "
+"the interwebs are saying right this second!</a>\n"
+"            "
+msgstr ""
+"Vous les avez tous lus ? Impressionnant, hein ?\n"
+"<br /><br />\n"
+"Vous voulez en voir plus ? Alors allez voir <a "
+"href=\"https://twitter.com/#!/search/webputty\" target=\"_blank\">tout de"
+" suite ce qui se dit sur les réseaux !</a>"
+
+#: app/templates/js/guiders.js:13
+msgid "No problem!"
+msgstr "Pas de problème !"
+
+#: app/templates/js/guiders.js:14
+msgid "Want to see the tutorial later? Just click here"
+msgstr "Vous voulez voir le tutoriel plus tard ? Cliquez simplement ici."
+
+#: app/templates/js/guiders.js:31 app/templates/js/guiders.js:88
+msgid "Leave Tour"
+msgstr "Quitter le tour"
+
+#: app/templates/js/guiders.js:40
+msgid "No Thanks"
+msgstr "Non Merci"
+
+#: app/templates/js/guiders.js:41
+msgid "Sure!"
+msgstr "Bien Sûr !"
+
+#: app/templates/js/guiders.js:43
+#, python-format
+msgid "Welcome to %(appname)s!"
+msgstr "Bienvenue sur %(appname)s !"
+
+#: app/templates/js/guiders.js:44
+#, python-format
+msgid ""
+"%(appname)s helps you write, update, and publish the CSS for your "
+"websites as fast as you can write it.<br /><br />Would you like a quick "
+"tour?"
+msgstr ""
+"%(appname)s vous aide à rédiger, mettre à jour et publier le CSS de vos "
+"sites Internet aussi rapidement que vous le rédigez. <br /><br /> "
+"Souhaitez-vous effectuer une visite rapide ?"
+
+#: app/templates/js/guiders.js:54 app/templates/js/guiders.js:72
+#: app/templates/js/guiders.js:89 app/templates/js/guiders.js:101
+#: app/templates/js/guiders.js:112
+msgid "Next"
+msgstr "Suivant"
+
+#: app/templates/js/guiders.js:61
+msgid "Your Sites"
+msgstr "Vos sites"
+
+#: app/templates/js/guiders.js:62
+msgid ""
+"Each of your websites is shown on the home page as a pile of stylesheets."
+" Clicking a site expands it to show the stylesheets it contains."
+msgstr ""
+"Chacun de vos sites Internet apparaît sur la page d\\'accueil comme un "
+"ensemble de feuilles de style. Cliquer sur un site l\\'agrandit pour "
+"montrer les feuilles de style qu\\'il contient."
+
+#: app/templates/js/guiders.js:77
+msgid "Stylesheets"
+msgstr "Feuilles de Style"
+
+#: app/templates/js/guiders.js:78
+msgid ""
+"Stylesheets are what contain the actual styles used by your website. A "
+"website can contain multiple stylesheets, and each stylesheet can be "
+"included on multiple pages (e.g. a site-wide style on your base "
+"template).<br /><br />When you create a stylesheet we ask you for a URL "
+"that uses that stylesheet so we can show you a preview image here."
+msgstr ""
+"Les feuilles de style contiennent les styles à proprement parler utilisés"
+" par votre site Internet. Un site peut contenir différentes feuilles de "
+"style et chacune peut être appliquée sur plusieurs pages (p.ex. un style "
+"pour tout le site sur votre modèle de base). <br /><br /> Lorsque vous "
+"créez une feuille de style, nous vous demandons une URL qui reprend cette"
+" feuille de style pour que nous puissions vous montrer un aperçu ici."
+
+#: app/templates/js/guiders.js:91
+msgid "Stylesheet Editor"
+msgstr "Éditeur de Feuilles de Style"
+
+#: app/templates/js/guiders.js:92
+msgid ""
+"This is the transmogrifier. It allows you to edit your website\\'s CSS on"
+" one half of the screen (well, <a href=\"http://sass-lang.com/\" "
+"target=\"_blank\">SCSS</a>, technically speaking) and see how those "
+"changes will affect your website on the other...in real-time!"
+msgstr ""
+"Voici le métamorphoseur. Il vous permet d\\'éditer le CSS de votre site "
+"Internet sur une moitié d\\'écran (enfin un <a href=\"http://sass-"
+"lang.com/\" target=\"_blank\">SCSS</a> techniquement parlant) et de voir "
+"comment ces modifications affecteront votre site Internet sur l\\'autre "
+"moitié... en temps réel!"
+
+#: app/templates/js/guiders.js:102
+msgid "Stylesheet Modes"
+msgstr "Modes de feuilles de style"
+
+#: app/templates/js/guiders.js:103
+#, python-format
+msgid ""
+"Every stylesheet in %(appname)s has two modes: a preview mode and a "
+"published mode.<br /><br /><b>Preview mode</b> gives you a sandbox to "
+"play in without inflicting half-baked changes on your visitors.<br /><br "
+"/>You can quickly switch between these two modes using this menu."
+msgstr ""
+"Chaque feuille de style dans %(appname)s a deux modes : un mode "
+"prévisualisation et un mode publié.<br /><br /><b>Le mode "
+"prévisualisation</b> vous permet de faire des essais sans infliger à vos "
+"visiteurs un design à moitié fini.<br /><br />Vous pouvez rapidement "
+"passer d\\'un mode à l\\'autre en utilisant ce menu."
+
+#: app/templates/js/guiders.js:113
+msgid "Sharing the sexy"
+msgstr "Partager vos merveilles"
+
+#: app/templates/js/guiders.js:114
+msgid ""
+"When your changes are fully baked and ready, you can publish them with "
+"the click of a button!"
+msgstr ""
+"Lorsque vos changements sont au point et fin prêts, vous pouvez les "
+"publier avec un simple clic !"
+
+#: app/templates/js/guiders.js:122
+msgid "Let me at that (S)CSS!"
+msgstr "Donnez-moi ce (S)CSS!"
+
+#: app/templates/js/guiders.js:123
+msgid "Start CSS-es-es-esing!"
+msgstr "Commencez à CSSer!"
+
+#: app/templates/js/guiders.js:124
+#, python-format
+msgid ""
+"There are a bunch of other nifty features in %(appname)s, but at this "
+"point you\\'ve probably got enough of the idea to get started.<br /><br "
+"/>Got feedback / criticisms / e-flowers?<br /><br />Drop us a line at <a "
+"href=\"mailto:%(feedback_email)s\">%(feedback_email)s</a>.<br />Or, if "
+"you\\'d rather, fill out <a href=\"%(feedback_url)s\" title=\"We\\'d love"
+" to hear from you. No, seriously!\">this web form</a>.<br /><br />Thanks,"
+" and have fun CSS-es-es-esing!"
+msgstr ""
+"Il y a un tas d\\'autres fonctionnalités géniales dans %(appname)s, mais "
+"à ce stade, vous en savez sûrement déjà assez pour commencer.<br /><br "
+"/>Vous avez des commentaires / critiques / fleurs à nous envoyer ?<br "
+"/><br />Envoyez-les à <a "
+"href=\"mailto:%(feedback_email)s\">%(feedback_email)s</a>.<br />Ou si "
+"vous préférez, remplissez <a href=\"%(feedback_url)s\" title=\"Nous "
+"aimerions recevoir de vos nouvelles. Non, sérieusement !\">ce formulaire "
+"web</a>.<br /><br />Merci, et amusez-vous à CSS-er !"
+
