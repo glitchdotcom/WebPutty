@@ -33,7 +33,8 @@ Intrigued? Read more about [the motivation behind WebPutty](http://blog.fogcreek
 ### For page preview images:
 - Go to http://url2png.com and sign up for an account
 	- Add these settings to the `url2png` section in settings.py
-### To store WebPutty stylesheets on Google Cloud Storage (faster and cheaper than GAE):
+
+### To store WebPutty stylesheets using Google Cloud Storage (faster and cheaper than GAE):
 - Sign up for [Google Cloud Storage](https://developers.google.com/storage/) via [Google's API console](https://code.google.com/apis/console/)
 	- Update `google_bucket` and `use_google_cloud_storage` in settings.py
 
