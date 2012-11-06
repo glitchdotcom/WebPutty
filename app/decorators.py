@@ -1,4 +1,4 @@
-import simplejson as json
+import json
 from functools import wraps
 from flask import Response, redirect, request
 from google.appengine.api import users
