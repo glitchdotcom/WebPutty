@@ -19,8 +19,14 @@ def revert_js_css_hashes(base_path=None):
     path = PATH_PACKAGES
     if base_path:
         path = os.path.join(base_path, PATH_PACKAGES)
-    print "Reverting %s" % path
-    popen_results(['hg', 'revert', '--no-backup', path])
+    root = os.path.abspath(os.path.dirname(__file__))
+    if os.path.exists(os.path.join(root, '.hg')):
+        print "Reverting %s" % path
+        popen_results(['hg', 'revert', '--no-backup', path])
+    elif os.path.exists(os.path.join(root, '.git')):
+        print "Reverting %s" % path
+        popen_results(['git', 'checkout', '--', path])
+
 
 def compress_all_javascript(base_path):
     path = os.path.join(base_path, 'static', 'js')
