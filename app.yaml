@@ -1,6 +1,7 @@
-application: your-gae-application
+application: tghwputty
 version: 1
-runtime: python
+runtime: python27
+threadsafe: yes
 api_version: 1
 default_expiration: "365d"
 
@@ -49,11 +50,11 @@ handlers:
   upload: static/codemirror/(.*\.js)
 
 - url: /_ah/mail/.+
-  script: incoming_email_handler.py
+  script: incoming_email_handler.application
   login: admin
 
 - url: /_migrate
-  script: bootstrap.py
+  script: bootstrap.app
   login: admin
 
 - url: /gae_mini_profiler/static/js/(.*\.tmpl)
@@ -65,18 +66,18 @@ handlers:
   static_dir: libs/gae_mini_profiler/static
 
 - url: /gae_mini_profiler/.*
-  script: libs/gae_mini_profiler/main.py
+  script: libs.gae_mini_profiler.main.app
 
 - url: /livecount/counter_admin
-  script: libs/livecount/counter_admin.py
+  script: libs.livecount.counter_admin.application
   login: admin
 
 - url: /livecount/.*
-  script: libs/livecount/counter.py
+  script: libs.livecount.counter.application
   login: admin
 
 - url: /tasks/.*
-  script: bootstrap.py
+  script: bootstrap.app
   login: admin
 
 - url: .*\.(jpg|gif|png)
@@ -84,5 +85,5 @@ handlers:
   upload: static/img/404.png
 
 - url: .*
-  script: bootstrap.py
+  script: bootstrap.app
 

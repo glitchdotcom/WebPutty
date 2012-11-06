@@ -20,8 +20,6 @@ adjust_sys_path()
 from datetime import datetime
 import logging
 import os
-import simplejson
-import wsgiref.handlers
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -111,13 +109,4 @@ class CounterHandler(webapp.RequestHandler):
         self.redirect("/livecount/counter_admin?namespace=" + namespace + "&period_type=" + period_type + "&period_types=" + period_types + "&period=" + period + "&counter_name=" + name + "&delta=" + delta)
 
 
-def main():
-    application = webapp.WSGIApplication(
-    [  
-        ('/livecount/counter_admin', CounterHandler),
-    ], debug=True)
-    wsgiref.handlers.CGIHandler().run(application)
-
-
-if __name__ == '__main__':
-    main()
+application = webapp.WSGIApplication([('/livecount/counter_admin', CounterHandler),], debug=True)

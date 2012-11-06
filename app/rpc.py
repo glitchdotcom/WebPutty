@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime
-import simplejson as json
+import json
 from google.appengine.api import memcache
 from flask import Module, request, abort, jsonify
 from flaskext.csrf import csrf_exempt

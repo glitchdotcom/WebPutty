@@ -1,7 +1,7 @@
 from logging import Formatter, Filter, StreamHandler
 import scss
 import settings
-import simplejson as json
+import json
 from datetime import datetime
 from StringIO import StringIO
 from google.appengine.ext import db

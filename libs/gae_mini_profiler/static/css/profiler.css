@@ -1,3 +1,7 @@
+.g-m-p-corner .entry {
+	height: auto;
+	margin: auto;
+}
 
 .g-m-p-corner {
     padding: 4px;
@@ -64,7 +68,7 @@
     -moz-border-radius-bottomright: 12px;
     border-bottom-right-radius: 12px;
 
-    z-index: 1000;
+    z-index: 99999;
 }
 
 .g-m-p .title {
@@ -85,8 +89,17 @@
     color: #CCC;
 }
 
+.g-m-p .appstats-link {
+    float:right;
+}
+
 .g-m-p .url {
     font-size: 125%;
+}
+
+.g-m-p .redirect {
+    float: left;
+    color: #444;
 }
 
 .g-m-p .total {
@@ -99,7 +112,8 @@
 }
 
 .g-m-p .summary {
-    float:right;
+    float: right;
+    display: inline;
 }
 
 .g-m-p .details {
@@ -120,7 +134,7 @@
 }
 
 .g-m-p .details table {
-    margin-top: 18px;
+    margin-top: 6px;
     border-spacing: 0;
     font-size: 12px;
 }
@@ -159,10 +173,12 @@
 
 .g-m-p .details .left {
     text-align: left;
+    float: none;
 }
 
 .g-m-p .details .right {
     text-align: right;
+    float: none;
 }
 
 .g-m-p-shared .shared-teaser-container {
@@ -178,6 +194,70 @@
     padding: 200px 0;
     font-size: 24px;
     font-weight: bold;
+}
+
+.g-m-p span.loglevel {
+    display: inline-block;
+    height: 1.2em;
+    width: 1.2em;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+.g-m-p span.loglevel span {
+    display: none;
+}
+
+.g-m-p .boxes li {
+    display: inline;
+    margin: 0 10px 0 0;
+}
+
+.g-m-p div.simple-timing {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.g-m-p .summary span.loglevel {
+    margin: 0 .1em 0 .6em;
+}
+.g-m-p span.loglevel.ll50:before { content: 'C'; }
+.g-m-p span.loglevel.ll40:before { content: 'E'; }
+.g-m-p span.loglevel.ll30:before { content: 'W'; }
+.g-m-p span.loglevel.ll20:before { content: 'I'; }
+.g-m-p span.loglevel.ll10:before { content: 'D'; }
+
+.g-m-p .ll50 { background-color: #F22; }
+.g-m-p .ll40 { background-color: #F90; }
+.g-m-p .ll30 { background-color: #Fd0; }
+.g-m-p .ll20 { background-color: #3C0; }
+.g-m-p .ll10 { background-color: #09F; }
+
+#slider {
+    padding: 5px 0 3px 0;
+}
+
+#slider .container {
+    width: 150px;
+    display: inline-block;
+}
+
+#slider .minlevel-text {
+    display: inline-block;
+    width: 4em;
+}
+
+#slider .loglevel {
+    margin-left: .5em;
+}
+
+#slider .ui-slider-horizontal {
+    /*height: .2em;*/
 }
 
 /* Borrowed from those smart guys @ Fog Creek. Props to Justin & Bobby */

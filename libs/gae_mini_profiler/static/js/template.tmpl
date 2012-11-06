@@ -4,6 +4,7 @@
 
 <script id="profilerCornerEntryTemplate" type="text/x-jquery-tmpl">
     <div class="entry">
+        {{if temporary_redirect}}&#8623;{{/if}}
         ${profiler_results.total_time} <span class="ms">ms</span>
     </div>
 </script>
@@ -18,10 +19,20 @@
                 ${profiler_results.total_time} <span class="ms">ms</span>
             </div>
         </div>
+
+        {{if simple_timing}}
+
+        <div class="simple-timing">Detailed timing information is disabled. <a href="#" class="toggle-enabled">Enable</a>.</div>
+
+        {{else}}
+
         <div class="date_and_share">
+            {{if temporary_redirect}}
+                <span class="redirect" title="Temporary redirect">&#8623; (302 redirect)</span>
+            {{/if}}
             <span class="date">${s_dt}</span>
-            -
-            <a class="share" href="/gae_mini_profiler/shared?request_id=${encodeURIComponent(request_id)}">Share</a>
+            - <a class="share" href="/gae_mini_profiler/shared?request_id=${encodeURIComponent(request_id)}">Share</a>
+            - <a class="toggle-enabled" href="#">Off</a>
         </div>
 
         <div class="expand">
@@ -81,21 +92,30 @@
         <div class="expand">
             <a href="#rpc-link" class="rpc-link link uses_script">Remote Procedure Calls</a>
             <div class="summary">
-                ${appstats_results.total_time} <span class="ms">ms</span>
-                spent in ${appstats_results.total_call_count} RPC{{if appstats_results.total_call_count != 1}}s{{/if}}
+            {{if appstats_results.appstats_available}}
+                    ${appstats_results.total_time} <span class="ms">ms</span>
+                    spent in ${appstats_results.total_call_count} RPC{{if appstats_results.total_call_count != 1}}s{{/if}}
 
-                {{if appstats_results.likely_dupes}}
-                    <span class="dupe">(likely dupes)</span>
-                {{/if}}
+                    {{if appstats_results.likely_dupes}}
+                        <span class="dupe">(likely dupes)</span>
+                    {{/if}}
+            {{else}}
+            		Appstats are unavailable
+            {{/if}}
             </div>
         </div>
 
         <div class="rpc-details details fancy-scrollbar" style="display:none;">
+
+            <a class="appstats-link" target="_appstats" href="/_ah/stats/details?time=${appstats_results.appstats_key}">Full Appstats Details</a>
+
+            {{if appstats_results.appstats_available && appstats_results.calls.length}}
             <table class="rpc-service-totals">
                 <thead>
                     <tr>
                         <th class="left"><nobr>service type</nobr></th>
                         <th class="right">calls</th>
+                        <th class="right">misses</th>
                         <th class="right headerSortDown"><nobr>total ms</nobr></th>
                     </tr>
                 </thead>
@@ -103,6 +123,7 @@
                 <tr>
                     <td>${$value.service_prefix}</td>
                     <td class="right">${$value.total_call_count}</td>
+                    <td class="right">${$value.total_misses}</td>
                     <td class="right">${$value.total_time}</td>
                 </tr>
                 {{/each}}
@@ -142,11 +163,61 @@
                             ${$value.request_short}
                         </span>
                     </td>
-                    <td>${$value.response}</td>
+                    <td>
+                        <span title="${$value.response}">
+                            ${$value.response_short}
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </table>
+            {{/if}}
         </div>
 
+        <div class="expand">
+            <a href="#logs-link" class="logs-link link uses_script">Logs</a>
+            <div class="summary">
+                {{each [10,20,30,40,50]}}
+                    {{if log_count[$value] > 0}}
+                        <span class='loglevel ll${$value}'></span> &#215;${log_count[$value]}
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="logs-details details fancy-scrollbar" style="display:none;">
+            <div id="slider">
+                Min level:
+                <span class="loglevel"></span>
+                <span class="minlevel-text"></span>
+                <div class="container"><div class="control"></div></div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="left">log</th>
+                        <th class="left">time</th>
+                        <th class="left"><nobr>fn</nobr></th>
+                        <th class="left"><nobr>file</nobr></th>
+                        <th class="left"><nobr>line</nobr></th>
+                        <th class="left"><nobr>message</nobr></th>
+                    </tr>
+                </thead>
+                {{each logs}}
+                    <tr class="ll${$value[0]}">
+                        <td class="left" class="${$value[0]}"><span class='loglevel ll${$value[0]}'><span>${$value[0]}</span></span></td>
+                        <td class="left">${$value[1]}</td>
+                        <td class="left">${$value[2]}</td>
+                        <td class="left">${$value[3]}</td>
+                        <td class="left">${$value[4]}</td>
+                        <td class="left">
+<pre>
+${$value[5]}
+</pre>                  </td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+        {{/if}}
     </div>
 </script>

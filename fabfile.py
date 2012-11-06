@@ -3,26 +3,22 @@ from __future__ import with_statement
 import functools
 import os
 import sys
-import shutil
-import getpass
-import re
 import webbrowser
 import zipfile
-from fabric.api import env, local, abort, prompt
+from fabric.api import env, local, prompt
 
 import compress
 
 #Some environment information to customize
 if os.name == 'posix':
     APPENGINE_PATH = '/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine'
-    PYTHON = '/usr/bin/python2.5'
+    PYTHON = '/usr/bin/python2.7'
 else:
     APPENGINE_PATH = r'C:\Program Files (x86)\Google\google_appengine'
-    PYTHON = r'C:\Python25\python.exe'
+    PYTHON = r'C:\Python27\python.exe'
 APPENGINE_APP_CFG = os.path.join(APPENGINE_PATH, 'appcfg.py')
 print APPENGINE_APP_CFG
 
-env.gae_email = None
 env.gae_src = os.path.dirname(__file__)
 
 #default values
@@ -57,9 +53,8 @@ def dryrun():
     env.dryrun = True
 
 @_include_appcfg
-def deploy(tag=None):
+def deploy():
     env.deploy_path = env.gae_src
-    prompt('Email:', 'gae_email')
 
     compress_js(env.deploy_path)
     compress_css(env.deploy_path)
@@ -68,7 +63,7 @@ def deploy(tag=None):
 
     if not env.dryrun:
         print 'Deploying %s' % env.app.version
-        local('%s "%s" -A %s -V %s --email=%s update %s' % (PYTHON, APPENGINE_APP_CFG, env.app.application, env.app.version, env.gae_email, env.deploy_path), capture=False)
+        local('%s "%s" -A %s -V %s --oauth2 update %s' % (PYTHON, APPENGINE_APP_CFG, env.app.application, env.app.version, env.deploy_path), capture=False)
         webbrowser.open('https://%s.appspot.com/' % env.app.application)
     else:
         print 'This is where we\'d actually deploy to App Engine, but this is a dryrun so we skip that part.'
@@ -89,7 +84,7 @@ def clean_packages(base_path=None):
     compress.revert_js_css_hashes(base_path)
 
 def update_translations():
-    local('pybabel extract -F babel.cfg -o app/messages.pot --project=WebPutty --version=%s --copyright-holder="Fog Creek Software, Inc." --msgid-bugs-address=customer-service@fogcreek.com app' % tag)
+    local('pybabel extract -F babel.cfg -o app/messages.pot --project=WebPutty --copyright-holder="Fog Creek Software, Inc." --msgid-bugs-address=customer-service@fogcreek.com app')
     local('pybabel update -i app/messages.pot -d app/translations')
     _update_piglatin()
     _update_english()
