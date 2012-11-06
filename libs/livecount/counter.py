@@ -18,7 +18,6 @@
 from datetime import datetime, timedelta
 import logging
 import time
-import wsgiref.handlers
 
 from google.appengine.api import memcache
 from google.appengine.api.labs import taskqueue
@@ -215,16 +214,10 @@ class RedirectToCounterAdminHandler(webapp.RequestHandler):
         self.redirect('/livecount/counter_admin')
 
 
-def main():
-    logging.getLogger().setLevel(logging.DEBUG)
-    application = webapp.WSGIApplication([
-         ('/livecount/worker', LivecountCounterWorker),
-         ('/livecount/writeback_all_counters', WritebackAllCountersHandler),
-         ('/livecount/clear_entire_cache', ClearEntireCacheHandler),
-         ('/', RedirectToCounterAdminHandler)
+logging.getLogger().setLevel(logging.DEBUG)
+application = webapp.WSGIApplication([
+    ('/livecount/worker', LivecountCounterWorker),
+    ('/livecount/writeback_all_counters', WritebackAllCountersHandler),
+    ('/livecount/clear_entire_cache', ClearEntireCacheHandler),
+    ('/', RedirectToCounterAdminHandler)
     ], debug=True)
-    wsgiref.handlers.CGIHandler().run(application)
-
-
-if __name__ == '__main__':
-    main()
