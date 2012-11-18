@@ -200,7 +200,7 @@ class Page(db.Model):
         # response, we'll want to wrap it to avoid the exploit described at
         # http://haacked.com/archive/2009/06/25/json-hijacking.aspx
         styles_obj = [style.json_obj() for style in self.styles]
-        return json.dumps(styles_obj, default=dt_handler, sort_keys=True, indent=4*' ' if settings.debug else None)
+        return json.dumps(styles_obj, default=dt_handler, sort_keys=True, indent=4 if settings.debug else None)
 
     def upload_to_cdn(self):
         if not settings.use_google_cloud_storage:
@@ -370,7 +370,7 @@ class PageChannel(db.Model):
 
     def send_message(self, message):
         if not isinstance(message, basestring):
-            message = json.dumps(message, default=dt_handler, sort_keys=True, indent=4*' ' if settings.debug else None)
+            message = json.dumps(message, default=dt_handler, sort_keys=True, indent=4 if settings.debug else None)
         gae_channels.send_message(self.client_id, message)
 
     @staticmethod
