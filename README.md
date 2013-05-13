@@ -14,7 +14,7 @@ Intrigued? Read more about [the motivation behind WebPutty](http://blog.fogcreek
 
 ## How to get WebPutty up and running on your very own sparkly Google App Engine account:
 
-1. Download and install [Python 2.5](http://www.python.org/getit/releases/2.5.6/) and the [Google App Engine SDK for Python](https://developers.google.com/appengine/downloads)
+1. Download and install [Python 2.7](http://www.python.org/getit/releases/2.7.4/) and the [Google App Engine SDK for Python](https://developers.google.com/appengine/downloads)
 - Clone this repo
 - [Log into Google App Engine](https://appengine.google.com/) and create a new application
 - Open up app.yaml in the root of this repo and update `application` to match the name of your newly created Google App Engine application
@@ -40,7 +40,7 @@ Intrigued? Read more about [the motivation behind WebPutty](http://blog.fogcreek
 
 # Copyright
 
-Copyright (c) 2011-2012 Fog Creek Software Inc.
+Copyright (c) 2011-2013 Fog Creek Software Inc.
 
 Some of the icons, images, and sample HTML &amp; CSS used by WebPutty are licensed under the following terms:
 
